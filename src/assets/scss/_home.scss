@@ -59,10 +59,11 @@ html,body{
 }
 
 .logo{
-  @include size(3.33rem,0.94rem);
-  padding-top: 0.4rem;
+  @include size(2.76rem,1.03rem);
+  padding-top: 0.9rem;
   margin: 0 auto 0.4rem;
 }
+
 .btn{
   text-align: center;
   //&.btn-buy{
@@ -92,4 +93,18 @@ html,body{
   left: 50%;
   top: 50%;
   @include transform(translate(-50%,-50%));
+}
+
+
+//for pin-welcome
+#pin-welcome{
+  .slogan{
+    text-align: center;
+    font-size: 0.3rem;
+    margin:1.35rem auto;
+  }
+  .qr{
+    @include size(2.88rem,2.89rem);
+    margin: 0 auto;
+  }
 }
