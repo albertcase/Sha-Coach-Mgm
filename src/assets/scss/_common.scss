@@ -110,12 +110,12 @@ img{
     display: block;
   }
   .inner{
-    width: 100vw;
+    width: 80vw;
     position: absolute;
     left: 50%;
     top: 50%;
     @include transform(translate(-50%,-50%));
-    //background: #fff;
+    background: #fff;
   }
   .title{
     padding: 0.2rem 0;
@@ -127,52 +127,65 @@ img{
   }
   .pcontent{
     padding: 0.4rem 0.4rem;
+    margin: 0.4rem auto 0;
     font-size: 0.28rem;
     line-height: 1.6;
     text-align: left;
     color: #515151;
     p{
-      //margin-bottom: 0.1rem;
-      color: #fff;
-      font-size: 0.24rem;
-      padding: 0 0.26rem;
-    }
-    h3{
-      color: #fff;
-      font-size: 0.32rem;
-      margin-bottom: 0.2rem;
-      &.t2{
-        margin-top: 0.5rem;
-      }
+      margin-bottom: 0.3rem;
     }
   }
   .btn-close{
-    position: relative;
-    //top: 0;
-    //right: 0.1rem;
+    position: absolute;
+    top: 0;
+    right: 0.1rem;
     z-index: 20;
-    @include size(0.8rem,0.8rem);
+    @include size(0.6rem,0.84rem);
     text-indent: -999em;
-    background: #fff;
-    border-radius: 100%;
-    margin: 0 auto;
     &:after,
     &:before {
       content: '';
       display: block;
-      width: 0.6rem;
+      width: 0.4rem;
       height: 0.04rem;
       top: 50%;
       left: 50%;
-      margin-left: -0.3rem;
+      margin-left: -0.2rem;
       position: absolute;
-      background: #a38334;
+      background: #fff;
     }
     &:after {
       @include transform(rotate(45deg));
     }
     &:before {
       @include transform(rotate(-45deg));
+    }
+  }
+}
+
+//for pop-rules
+.pop-rules{
+  .btn-close{
+    opacity: 0.8;
+    top: 0.04rem;
+  }
+  .rule-title{
+    background: #000;
+    color: #fff;
+    font-size: 0.36rem;
+    padding: 0.22rem;
+    text-align: center;
+  }
+  .rule-content{
+    color: #515151;
+    font-size: 0.28rem;
+    padding: 0.7rem 0.6rem;
+    height: 6rem;
+    overflow: auto;
+    color: #515151;
+    p{
+      margin-bottom: 0.5rem;
     }
   }
 }

@@ -66,24 +66,16 @@ html,body{
 
 .btn{
   text-align: center;
-  //&.btn-buy{
-  //  span{
-  //    &:active{
-  //      background: #6c0000;
-  //      color: #f95f60;
-  //    }
-  //  }
-  //}
-  span{
-    display: inline-block;
-    padding: 0.2rem 1rem;
-    background: #6c0000;
-    color: #f95f60;
-    font-size: 0.32rem;
-    &:active{
-      background: #350000;
-      color: #efc8c8;
-    }
+  display: block;
+  width: 2.7rem;
+  margin: 0 auto;
+  padding: 0.2rem 1rem;
+  background: #000;
+  color: #fff;
+  font-size: 0.32rem;
+  &:active{
+    background: #000;
+    color: #ccc;
   }
 }
 
@@ -106,5 +98,39 @@ html,body{
   .qr{
     @include size(2.88rem,2.89rem);
     margin: 0 auto;
+  }
+}
+
+//for pin-join
+#pin-join{
+  .slogan{
+    font-size: 0.28rem;
+    margin: 0.6rem auto;
+    text-align: center;
+  }
+  .block-qr{
+    position: relative;
+    .product-1{
+      //float: left;
+      @include size(3.9rem,3.9rem);
+    }
+    .qr{
+      position: absolute;
+      left: 4.4rem;
+      top: 50%;
+      @include transform(translateY(-50%));
+      @include size(2.68rem,2.68rem);
+    }
+  }
+  .btn{
+    margin: 0.8rem auto 0.5rem;
+  }
+  .link-rule{
+    text-align: center;
+    span{
+      font-size: 0.26rem;
+      text-decoration: underline;
+      display: inline-block;
+    }
   }
 }
