@@ -17,8 +17,8 @@ define("APPSECRET", '?????');
 define("NOWTIME", date('Y-m-d H:i:s'));
 define("AHEADTIME", '100');
 
-define("NONCESTR", '?????');
-define("CURIO_AUTH_URL", '?????'); 
+define("NONCESTR", '1jvia1');
+define("CURIO_AUTH_URL", 'http://uat.coach.samesamechina.com/api/wechat/oauth/auth/3f7a493c-1db6-41c3-8406-188ddf0a4ee8'); 
 
 //Redis config info
 define("REDIS_HOST", '127.0.0.1');
