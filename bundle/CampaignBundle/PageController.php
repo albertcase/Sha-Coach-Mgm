@@ -56,7 +56,7 @@ class PageController extends Controller {
 	}
 
 	public function qrscanAction() {
-		$data = $_GLOBALS['HTTP_RAW_POST_DATA']? $_GLOBALS['HTTP_RAW_POST_DATA'] : 1;	
+		$data = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : 1;	
 		$DatabaseAPI = new \Lib\DatabaseAPI();
 		$DatabaseAPI->insertLog($data);
 	}
