@@ -42,10 +42,11 @@ class PageController extends Controller {
 		$data->scene_str = $request->request->get('scene_str');
 
 		if($DatabaseAPI->insertReply($data)) {
-			$data = array('status' => 1);
+			$data = array('status' => 'success');
 			$this->dataPrint($data);
 		} else {
-			$this->statusPrint('0', 'failed');
+			$data = array('status' => 'success');
+			$this->dataPrint($data);
 		}
 	}
 
@@ -55,7 +56,7 @@ class PageController extends Controller {
 	}
 
 	public function qrscanAction() {
-		$data = $GLOBALS['HTTP_RAW_POST_DATA']? $GLOBALS['HTTP_RAW_POST_DATA'] : 1;	
+		$data = $_GLOBALS['HTTP_RAW_POST_DATA']? $_GLOBALS['HTTP_RAW_POST_DATA'] : 1;	
 		$DatabaseAPI = new \Lib\DatabaseAPI();
 		$DatabaseAPI->insertLog($data);
 	}
