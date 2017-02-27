@@ -29,13 +29,24 @@ class PageController extends Controller {
     	$fields = array(
 			'openid' => array('notnull', '120'),
 			'nickname' => array('notnull', '121'),
-			'scene_str' => array('notnull', '122'),
+			'headimgurl' => array('notnull', '122'),
+			'scene_str' => array('notnull', '123'),
 		);
 		$request->validation($fields);
-		$openid = $request->request->get('openid');
-		$nickname = $request->request->get('nickname');
-		$scene_str = $request->request->get('scene_str');
 		
+		$DatabaseAPI = new \Lib\DatabaseAPI();
+		$data = new \stdClass();
+		$data->openid = $request->request->get('openid');
+		$data->nickname = $request->request->get('nickname');
+		$data->headimgurl = $request->request->get('headimgurl');
+		$data->scene_str = $request->request->get('scene_str');
+
+		if($DatabaseAPI->insertReply($data)) {
+			$data = array('status' => 1);
+			$this->dataPrint($data);
+		} else {
+			$this->statusPrint('0', 'failed');
+		}
 		echo 1;exit;
 	}
 

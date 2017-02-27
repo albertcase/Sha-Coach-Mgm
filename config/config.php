@@ -11,7 +11,7 @@ define("USER_STORAGE", 'COOKIE');
 define("WECHAT_VENDOR", 'curio'); // default | curio
 
 //Wechat config info
-define("TOKEN", '?????');
+define("TOKEN", 'zcBpBLWyAFy6xs3e7HeMPL9zWrd7Xy');
 define("APPID", '?????');
 define("APPSECRET", '?????');
 define("NOWTIME", date('Y-m-d H:i:s'));

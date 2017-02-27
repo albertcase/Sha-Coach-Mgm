@@ -130,4 +130,15 @@ class DatabaseAPI {
 		return NULL;
 	}
 
+	public function insertReply($data) {
+		$nowtime = NOWTIME;
+		$sql = "INSERT INTO `info` SET `uid` = ?, `name` = ?, `cellphone` = ?, `address` = ?, `created` = ?, `updated` = ?"; 
+		$res = $this->connect()->prepare($sql); 
+		$res->bind_param("ssssss", $data->uid, $data->name, $data->cellphone, $data->address, $nowtime, $nowtime);
+		if($res->execute()) 
+			return $res->insert_id;
+		else 
+			return FALSE;
+	}
+
 }
