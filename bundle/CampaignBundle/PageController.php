@@ -59,5 +59,6 @@ class PageController extends Controller {
 		$data = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : 1;	
 		$DatabaseAPI = new \Lib\DatabaseAPI();
 		$DatabaseAPI->insertLog($data);
+		exit;
 	}
 }
