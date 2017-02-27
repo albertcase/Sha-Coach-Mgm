@@ -141,4 +141,15 @@ class DatabaseAPI {
 			return FALSE;
 	}
 
+	public function insertLog($data) {
+		$nowtime = NOWTIME;
+		$sql = "INSERT INTO `log` SET `data` = ?"; 
+		$res = $this->connect()->prepare($sql); 
+		$res->bind_param("s", $data);
+		if($res->execute()) 
+			return $res->insert_id;
+		else 
+			return FALSE;
+	}
+
 }

@@ -54,4 +54,10 @@ class PageController extends Controller {
 		setcookie('_user', json_encode($user), time(), '/');
 		$this->statusPrint('success');
 	}
+
+	public function qrscanAction() {
+		$data = $GLOBALS['HTTP_RAW_POST_DATA'];	
+		$DatabaseAPI = new \Lib\DatabaseAPI();
+		$DatabaseAPI->insetLog($data);
+	}
 }
