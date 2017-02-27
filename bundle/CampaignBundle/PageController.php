@@ -47,7 +47,6 @@ class PageController extends Controller {
 		} else {
 			$this->statusPrint('0', 'failed');
 		}
-		echo 1;exit;
 	}
 
 	public function clearCookieAction() {
