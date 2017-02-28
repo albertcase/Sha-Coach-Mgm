@@ -37,7 +37,7 @@ class PageController extends Controller {
 		$data = json_decode($data);
 
 		if($DatabaseAPI->insertReply($data)) {
-			$response = array('openid' => $data->openid, 'text' => '关注成功', 'link' => 'http://baidu.com');
+			$response = array('openid' => $data->openid, 'text' => '<a href="http://www.baidu.com">关注成功</a>');
 			$data = array('status' => 'success', 'data' => $response);
 			$this->dataPrint($data);
 		} else {
