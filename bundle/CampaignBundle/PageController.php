@@ -6,9 +6,10 @@ use Core\Controller;
 class PageController extends Controller {
 
 	public function indexAction() {
-		$RedisAPI = new \Lib\RedisAPI();
-		$config = $RedisAPI->jssdkConfig($this->request->getUrl(TRUE));
-		$this->render('index', array('config' => $config));
+		
+		global $user;
+		echo file_get_contents('http://uat.coach.samesamechina.com/api/coach/create_tmp_qr/'.$user->openid.'?access_token='.TOKEN);
+		exit;
 	}
 
 	public function testAction() {
