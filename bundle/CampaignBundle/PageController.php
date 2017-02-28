@@ -25,29 +25,33 @@ class PageController extends Controller {
 	}
 
 	public function replyAction() {
-		$request = $this->request;
-    	$fields = array(
-			'openid' => array('notnull', '120'),
-			'nickname' => array('notnull', '121'),
-			'headimgurl' => array('notnull', '122'),
-			'scene_str' => array('notnull', '123'),
-		);
-		$request->validation($fields);
-		
+		$data = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : 1;	
 		$DatabaseAPI = new \Lib\DatabaseAPI();
-		$data = new \stdClass();
-		$data->openid = $request->request->get('openid');
-		$data->nickname = $request->request->get('nickname');
-		$data->headimgurl = $request->request->get('headimgurl');
-		$data->scene_str = $request->request->get('scene_str');
+		$DatabaseAPI->insertLog($data);
+		exit;
+		// $request = $this->request;
+  //   	$fields = array(
+		// 	'openid' => array('notnull', '120'),
+		// 	'nickname' => array('notnull', '121'),
+		// 	'headimgurl' => array('notnull', '122'),
+		// 	'scene_str' => array('notnull', '123'),
+		// );
+		// $request->validation($fields);
+		
+		// $DatabaseAPI = new \Lib\DatabaseAPI();
+		// $data = new \stdClass();
+		// $data->openid = $request->request->get('openid');
+		// $data->nickname = $request->request->get('nickname');
+		// $data->headimgurl = $request->request->get('headimgurl');
+		// $data->scene_str = $request->request->get('scene_str');
 
-		if($DatabaseAPI->insertReply($data)) {
-			$data = array('status' => 'success');
-			$this->dataPrint($data);
-		} else {
-			$data = array('status' => 'success');
-			$this->dataPrint($data);
-		}
+		// if($DatabaseAPI->insertReply($data)) {
+		// 	$data = array('status' => 'success');
+		// 	$this->dataPrint($data);
+		// } else {
+		// 	$data = array('status' => 'success');
+		// 	$this->dataPrint($data);
+		// }
 	}
 
 	public function clearCookieAction() {
