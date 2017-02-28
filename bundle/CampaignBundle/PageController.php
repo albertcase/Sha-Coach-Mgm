@@ -36,7 +36,13 @@ class PageController extends Controller {
 
 		$data = json_decode($data);
 
-		if($DatabaseAPI->insertReply($data)) {
+		$info = new \StdClass();
+		$info->openid = $data->openid ? $data->openid : '';
+		$info->nickname = $data->nickname ? $data->nickname : '';
+		$info->headimgurl = $data->headimgurl ? $data->headimgurl : '';
+		$info->scene_str = $data->scene_str ? $data->scene_str : '';
+
+		if($DatabaseAPI->insertReply($info)) {
 			$response = array('openid' => $data->openid, 'text' => '<a href="http://www.baidu.com">关注成功</a>');
 			$data = array('status' => 'success', 'data' => $response);
 			$this->dataPrint($data);
