@@ -1125,13 +1125,15 @@ html, body {
 #pin-exchange {
   font-size: 0.28rem;
   text-align: center;
+  padding-bottom: 0.4rem;
+  overflow: auto;
 }
 
 .userinfo-block {
   position: relative;
   display: block;
   width: 2rem;
-  margin: 0 auto;
+  margin: 0.3rem auto;
   text-align: left;
 }
 .userinfo-block .avatar {
@@ -1162,8 +1164,14 @@ html, body {
   background-size: auto 0.26rem;
 }
 
+.p1-t1 {
+  margin-top: 0.2rem;
+}
+
 .show-personal {
   text-decoration: underline;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
 }
 
 .product-lists {
@@ -1173,9 +1181,14 @@ html, body {
   width: 41%;
   display: inline-block;
   margin-left: 6%;
+  margin-top: 0.3rem;
   text-align: center;
+}
+.product-lists .item .p-title {
+  margin: 0.4rem 0;
 }
 .product-lists .item .btn {
   width: 100%;
-  padding: .2rem 0;
+  margin: 0.2rem 0 0;
+  padding: .1rem 0;
 }
