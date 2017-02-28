@@ -252,7 +252,6 @@ img {
   padding: 0.7rem 0.6rem;
   height: 6rem;
   overflow: auto;
-  color: #515151;
 }
 .pop-rules .rule-content p {
   margin-bottom: 0.5rem;
@@ -1121,4 +1120,62 @@ html, body {
   font-size: 0.26rem;
   text-decoration: underline;
   display: inline-block;
+}
+
+#pin-exchange {
+  font-size: 0.28rem;
+  text-align: center;
+}
+
+.userinfo-block {
+  position: relative;
+  display: block;
+  width: 2rem;
+  margin: 0 auto;
+  text-align: left;
+}
+.userinfo-block .avatar {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  background: green;
+}
+.userinfo-block .stars {
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  margin-top: -0.13rem;
+  display: inline-block;
+  width: 1.08rem;
+  height: 0.26rem;
+  background-image: url("../../images/star.png");
+  background-repeat: repeat-x;
+  background-color: #d1d1d1;
+  background-size: auto 0.26rem;
+}
+.userinfo-block .stars .progress {
+  display: block;
+  height: 0.26rem;
+  background-image: url("../../images/star.png");
+  background-repeat: repeat-x;
+  background-color: #ff5454;
+  background-size: auto 0.26rem;
+}
+
+.show-personal {
+  text-decoration: underline;
+}
+
+.product-lists {
+  text-align: left;
+}
+.product-lists .item {
+  width: 41%;
+  display: inline-block;
+  margin-left: 6%;
+  text-align: center;
+}
+.product-lists .item .btn {
+  width: 100%;
+  padding: .2rem 0;
 }

@@ -1,0 +1,56 @@
+//for exchange page
+#pin-exchange{
+  font-size: 0.28rem;
+  text-align: center;
+}
+
+.userinfo-block{
+  position: relative;
+  display: block;
+  width: 2rem;
+  margin: 0 auto;
+  text-align: left;
+  .avatar{
+    display: inline-block;
+    @include size(0.75rem,0.75rem);
+    background: green;
+  }
+  .stars{
+    position: absolute;
+    left: 0.8rem;
+    top: 50%;
+    margin-top: -0.13rem;
+    display: inline-block;
+    @include size(1.08rem,0.26rem);
+    background-image: url("../../images/star.png");
+    background-repeat: repeat-x;
+    background-color: #d1d1d1;
+    background-size: auto 0.26rem;
+    .progress{
+      display: block;
+      height: 0.26rem;
+      background-image: url("../../images/star.png");
+      background-repeat: repeat-x;
+      background-color: #ff5454;
+      background-size: auto 0.26rem;
+    }
+  }
+}
+.show-personal{
+  text-decoration: underline;
+}
+
+//for product-lists
+.product-lists{
+  text-align: left;
+  .item{
+    width: 41%;
+    display: inline-block;
+    margin-left: 6%;
+    text-align: center;
+    .btn{
+      width: 100%;
+      padding: .2rem 0;
+    }
+  }
+}
