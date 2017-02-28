@@ -41,7 +41,8 @@ class PageController extends Controller {
 			$data = array('status' => 'success', 'data' => $response);
 			$this->dataPrint($data);
 		} else {
-			$data = array('status' => 'success');
+			$response = array('openid' => $data->openid, 'text' => '<a href="http://www.baidu.com">关注成功</a>');
+			$data = array('status' => 'success', 'data' => $response);
 			$this->dataPrint($data);
 		}
 
