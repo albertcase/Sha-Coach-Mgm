@@ -26,33 +26,26 @@ class PageController extends Controller {
 	}
 
 	public function replyAction() {
-		$data = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : 1;	
+		$data = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : '{"openid":"oqQW1w6XC7Cd9ApryXfNsOkffrSw","nickname":"\u6211\u662f\u827e\u6d3e\u5fb7\ud83d\ude03","headimgurl":"http:\/\/wx.qlogo.cn\/mmopen\/j2lJiakBYwa3J0ib1sTBPoUH2YJFQTcI68ibica2U2ACB6JKRPicIdlHjTEBXPatIPqK0Qw9icqE7foolTSWLJFnDFbV74tiaV58BbK\/0","scene_str":"oqQW1w2hTaqyg5URFoBjSHgY47WU"}';
+		if (!$data) {
+			$data = array('status' => 'failed');
+		    $this->dataPrint($data);
+		}	
 		$DatabaseAPI = new \Lib\DatabaseAPI();
 		$DatabaseAPI->insertLog($data);
-		exit;
-		// $request = $this->request;
-  //   	$fields = array(
-		// 	'openid' => array('notnull', '120'),
-		// 	'nickname' => array('notnull', '121'),
-		// 	'headimgurl' => array('notnull', '122'),
-		// 	'scene_str' => array('notnull', '123'),
-		// );
-		// $request->validation($fields);
-		
-		// $DatabaseAPI = new \Lib\DatabaseAPI();
-		// $data = new \stdClass();
-		// $data->openid = $request->request->get('openid');
-		// $data->nickname = $request->request->get('nickname');
-		// $data->headimgurl = $request->request->get('headimgurl');
-		// $data->scene_str = $request->request->get('scene_str');
 
-		// if($DatabaseAPI->insertReply($data)) {
-		// 	$data = array('status' => 'success');
-		// 	$this->dataPrint($data);
-		// } else {
-		// 	$data = array('status' => 'success');
-		// 	$this->dataPrint($data);
-		// }
+		$data = json_decode($data);
+
+		if($DatabaseAPI->insertReply($data)) {
+			$response = array('openid' => $data->openid, 'text' => '关注成功', 'link' => 'http://baidu.com');
+			$data = array('status' => 'success', 'data' => $response);
+			$this->dataPrint($data);
+		} else {
+			$data = array('status' => 'success');
+			$this->dataPrint($data);
+		}
+
+
 	}
 
 	public function clearCookieAction() {
