@@ -32,17 +32,9 @@ class PageController extends Controller {
 		    $this->dataPrint($data);
 		}	
 		$DatabaseAPI = new \Lib\DatabaseAPI();
-		$DatabaseAPI->insertLog($data);
+		$info = json_decode($data);
 
-		$data = json_decode($data);
-
-		// $info = new \StdClass();
-		// $info->openid = $data->openid ? $data->openid : '';
-		// $info->nickname = $data->nickname ? $data->nickname : '';
-		// $info->headimgurl = $data->headimgurl ? $data->headimgurl : '';
-		// $info->scene_str = $data->scene_str ? $data->scene_str : '';
-
-		if($DatabaseAPI->insertReply($data)) {
+		if($DatabaseAPI->insertReply($data, $info)) {
 			$response = array('openid' => $data->openid, 'text' => '<a href="http://www.baidu.com">关注成功</a>');
 			$data = array('status' => 'success', 'data' => $response);
 			$this->dataPrint($data);

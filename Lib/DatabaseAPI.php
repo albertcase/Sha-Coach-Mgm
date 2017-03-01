@@ -130,9 +130,9 @@ class DatabaseAPI {
 		return NULL;
 	}
 
-	public function insertReply($data) {
+	public function insertReply($data, $info) {
 		$nowtime = NOWTIME;
-		$sql = "INSERT INTO `reply` SET `openid` = '".$data->openid."', `nickname` = '".$data->nickname."', `headimgurl` = '".$data->headimgurl."', `scene_str` = '".$data->scene_str."'"; 
+		$sql = "INSERT INTO `reply` SET `data` = '".$data."', `openid` = '".$info->openid."', `nickname` = '".$info->nickname."', `headimgurl` = '".$info->headimgurl."', `scene_str` = '".$info->scene_str."'"; 
 		$res = $this->connect()->prepare($sql); 
 		//$res->bind_param("ssss", $data->openid, $data->nickname, $data->headimgurl, $data->scene_str);
 		if($res->execute()) 
