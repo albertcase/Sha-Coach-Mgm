@@ -124,6 +124,11 @@ html,body{
   }
   .btn{
     margin: 0.8rem auto 0.5rem;
+    a{
+      display: block;
+      color: #fff;
+      text-decoration: none;
+    }
   }
   .link-rule{
     text-align: center;

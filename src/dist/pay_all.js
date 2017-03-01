@@ -271,13 +271,6 @@ var Zepto=function(){function L(t){return null==t?String(t):j[S.call(t)]||"objec
 $(document).ready(function(){
 
 	//close alert pop
-	$('body').on('touchstart','.btn-alert-ok',function(){
-		Common.alertBox.remove();
-		//for form page
-		if($('body').hasClass('page-form') && $(this).parent().find('.msg').html() == '你已经参与抽奖'){
-			window.location.href='/';
-		}
-	});
 
 });
 

@@ -290,13 +290,6 @@ b.params.hashnav&&b.hashnav&&b.hashnav.init(),b.params.a11y&&b.a11y&&b.a11y.init
 $(document).ready(function(){
 
 	//close alert pop
-	$('body').on('touchstart','.btn-alert-ok',function(){
-		Common.alertBox.remove();
-		//for form page
-		if($('body').hasClass('page-form') && $(this).parent().find('.msg').html() == '你已经参与抽奖'){
-			window.location.href='/';
-		}
-	});
 
 });
 
