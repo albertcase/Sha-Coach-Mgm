@@ -152,4 +152,19 @@ class DatabaseAPI {
 			return FALSE;
 	}
 
+	public function checkband($uid) {
+		$sql = "SELECT `id`, `pid` FROM `parent` WHERE `uid` = ?"; 
+		$res = $this->connect()->prepare($sql);
+		$res->bind_param("s", $uid);
+		$res->execute();
+		$res->bind_result($id, $pid);
+		if($res->fetch()) {
+			$info = new \stdClass();
+			$info->id = $id;
+			$info->pid = $pid;
+			return $info;
+		}
+		return NULL;
+	}
+
 }

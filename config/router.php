@@ -13,3 +13,4 @@ $routers['/clear'] = array('CampaignBundle\Page', 'clearCookie');
 $routers['/test'] = array('CampaignBundle\Page', 'test');
 $routers['/api/coach/qr_scan'] = array('CampaignBundle\Page', 'qrscan');
 $routers['/mgm/qr/reply'] = array('CampaignBundle\Page', 'reply');
+$routers['/qrcode'] = array('CampaignBundle\Page', 'qrcode');

@@ -1,6 +1,6 @@
 <?php
 
-define("BASE_URL", 'http://127.0.0.1:9211/');
+define("BASE_URL", 'http://coachmgmtest.samesamechina.com/');
 define("TEMPLATE_ROOT", dirname(__FILE__) . '/../template');
 define("VENDOR_ROOT", dirname(__FILE__) . '/../vendor');
 
