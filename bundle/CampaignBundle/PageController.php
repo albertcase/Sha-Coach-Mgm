@@ -25,6 +25,10 @@ class PageController extends Controller {
 		echo 1;exit;
 	}
 
+	public function qrcodeAction() {
+		$this->render('qrcode',array('qrcode'=>'http://uat.coach.samesamechina.com/sites/default/files/kuri_wechat/qr/02V3NN9BF5eR31Sqorho1g.png'));
+	}
+
 	public function replyAction() {
 		$data = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : '{"openid":"oqQW1w6XC7Cd9ApryXfNsOkffrSw","nickname":"\u6211\u662f\u827e\u6d3e\u5fb7\ud83d\ude03","headimgurl":"http:\/\/wx.qlogo.cn\/mmopen\/j2lJiakBYwa3J0ib1sTBPoUH2YJFQTcI68ibica2U2ACB6JKRPicIdlHjTEBXPatIPqK0Qw9icqE7foolTSWLJFnDFbV74tiaV58BbK\/0","scene_str":"oqQW1w2hTaqyg5URFoBjSHgY47WU"}';
 		if (!$data) {
@@ -35,7 +39,22 @@ class PageController extends Controller {
 		$info = json_decode($data);
 
 		if($DatabaseAPI->insertReply($data, $info)) {
-			$response = array('openid' => $data->openid, 'text' => '<a href="http://www.baidu.com">关注成功</a>');
+			if ($info->openid != $info->scene_str) {
+				$user1 = $DatabaseAPI->findUserByOpenid($info->openid);
+				$user2 = $DatabaseAPI->findUserByOpenid($info->scene_str);
+				if ($DatabaseAPI->checkband($user1->uid)) {
+					//已绑定
+					$response = array();
+					$data = array('status' => 'success', 'data' => $response);
+					$this->dataPrint($data);
+				}
+				//未绑定
+
+				$response = array('openid' => $info->openid, 'text' => '<a href="'.BASE_URL.'qrcode?id='.$uid.'">点击获取您的专属二维码</a>');
+				$data = array('status' => 'success', 'data' => $response);
+				$this->dataPrint($data);
+			}
+			$response = array();
 			$data = array('status' => 'success', 'data' => $response);
 			$this->dataPrint($data);
 		} else {
