@@ -1192,3 +1192,21 @@ html, body {
   margin: 0.2rem 0 0;
   padding: .1rem 0;
 }
+
+#form-contact .title {
+  margin: 0.8rem 0;
+}
+#form-contact .input-box {
+  text-align: center;
+}
+#form-contact .input-box input[type="text"], #form-contact .input-box input[type="tel"] {
+  width: 5rem;
+  margin: 0 auto 0.5rem;
+  padding: 0.2rem 0.5rem;
+  background: #f5f6f6;
+  border: #cdc9c8 1px solid;
+  font-size: 0.34rem;
+}
+#form-contact .btn {
+  padding: .2rem 0;
+}
