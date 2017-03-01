@@ -26,7 +26,7 @@ class PageController extends Controller {
 	}
 
 	public function qrcodeAction() {
-		$this->render('qrcode',array('qrcode'=>'http://uat.coach.samesamechina.com/sites/default/files/kuri_wechat/qr/02V3NN9BF5eR31Sqorho1g.png'))
+		$this->render('qrcode',array('qrcode'=>'http://uat.coach.samesamechina.com/sites/default/files/kuri_wechat/qr/02V3NN9BF5eR31Sqorho1g.png'));
 	}
 
 	public function replyAction() {
