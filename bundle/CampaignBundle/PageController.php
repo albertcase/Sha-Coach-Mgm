@@ -13,6 +13,21 @@ class PageController extends Controller {
 	}
 
 	public function testAction() {
+		$data = array("touser"=>"",
+			"msgtype"=>"text",
+			"text"=>"test");
+		$api_url = "http://coach.samesamechina.com/v2/wx/message2/custom/text";
+	    $ch = curl_init();
+	    // print_r($ch);
+	    curl_setopt ($ch, CURLOPT_URL, $api_url);
+	    //curl_setopt($ch, CURLOPT_POST, 1);
+	    curl_setopt ($ch, CURLOPT_HEADER, 0);
+	    curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+	    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+	    $info = curl_exec($ch);
+	    curl_close($ch);
+	    var_dump($info);exit;
+		/*
 		$RedisAPI = new \Lib\RedisAPI();
 		$RedisAPI ->setParent(2,1);
 		$RedisAPI ->setParent(3,2);
@@ -23,6 +38,7 @@ class PageController extends Controller {
 		$rs= $RedisAPI ->getAllParent(5);
 		var_dump($rs);
 		echo 1;exit;
+		*/
 	}
 
 	public function qrcodeAction() {
