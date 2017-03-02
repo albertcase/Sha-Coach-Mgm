@@ -41,6 +41,10 @@ class PageController extends Controller {
 		if($DatabaseAPI->insertReply($data, $info)) {
 			if ($info->openid != $info->scene_str) {
 				$user1 = $DatabaseAPI->findUserByOpenid($info->openid);
+				if (!$user1) {
+					$user1 = $DatabaseAPI->insertUserByQrcode($info->openid, $info->nickname, $info->headimgurl);
+				}
+
 				$user2 = $DatabaseAPI->findUserByOpenid($info->scene_str);
 				if ($DatabaseAPI->checkband($user1->uid)) {
 					//已绑定
