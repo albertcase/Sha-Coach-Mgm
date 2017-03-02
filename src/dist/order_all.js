@@ -938,8 +938,6 @@ var region = [
 
 $(document).ready(function(){
 
-	//close alert pop
-
 });
 
 
@@ -982,24 +980,25 @@ $(document).ready(function(){
 
 /*All the api collection*/
 Api = {
-    //是否还有库存
-    quota:function(callback){
-        Common.msgBox('loading...');
-        $.ajax({
-            url:'/api/quota',
-            type:'POST',
-            dataType:'json',
-            success:function(data){
-                $('.ajaxpop').remove();
-                return callback(data);
-                //status=1 有库存
-            }
-        });
+    //是否授权，并且获取用户信息
+    isLogin:function(callback){
+        //Common.msgBox('loading...');
+        //$.ajax({
+        //    url:'/api/quota',
+        //    type:'POST',
+        //    dataType:'json',
+        //    success:function(data){
+        //        $('.ajaxpop').remove();
+        //        return callback(data);
+        //        //status=1 有库存
+        //    }
+        //});
 
-        //return callback({
-        //    status:1,
-        //    msg:'success'
-        //})
+        return callback({
+            status:1,
+            avatar:'/src/images/qr-1.png',
+            score:'100'
+        })
 
 
     },
