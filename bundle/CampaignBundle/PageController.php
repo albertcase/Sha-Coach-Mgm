@@ -13,7 +13,7 @@ class PageController extends Controller {
 	}
 
 	public function testAction() {
-		$data = array("touser"=>"",
+		$data = array("touser"=>"oqQW1w1pPzCMyWsiD45HPTHUvaPo",
 			"msgtype"=>"text",
 			"text"=>"test");
 		$api_url = "http://coach.samesamechina.com/v2/wx/message2/custom/text?access_token=".TOKEN;
