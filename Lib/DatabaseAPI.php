@@ -57,15 +57,17 @@ class DatabaseAPI {
 	 * Create user in database
 	 */
 	public function findUserByOpenid($openid){
-		$sql = "SELECT `uid`, `openid` FROM `user` WHERE `openid` = ?"; 
+		$sql = "SELECT `uid`, `openid`, `nickname`, `headimgurl` FROM `user` WHERE `openid` = ?"; 
 		$res = $this->connect()->prepare($sql);
 		$res->bind_param("s", $openid);
 		$res->execute();
-		$res->bind_result($uid, $openid);
+		$res->bind_result($uid, $openid, $nickname, $headimgurl);
 		if($res->fetch()) {
 			$user = new \stdClass();
 			$user->uid = $uid;
 			$user->openid = $openid;
+			$user->nickname = $nickname;
+			$user->headimgurl = $headimgurl;
 			return $user;
 		}
 		return NULL;
@@ -166,5 +168,30 @@ class DatabaseAPI {
 		}
 		return NULL;
 	}
+
+	public function band($uid, $pid) {
+		$sql = "INSERT INTO `parent` set `uid` = ?, `pid` = ?"; 
+		$res = $this->connect()->prepare($sql);
+		$res->bind_param("ss", $uid, $pid);
+		if($res->execute()) 
+			return $res->insert_id;
+		else 
+			return FALSE;
+	}
+
+	/**
+	 * Create user in database
+	 */
+	public function insertUserByQrcode($openid, $nickname, $headimgurl){
+		$nowtime = NOWTIME;
+		$sql = "INSERT INTO `user` SET `openid` = ?, `nickname` = ?, `headimgurl` = ?, `created` = ?, `updated` = ?"; 
+		$res = $this->connect()->prepare($sql); 
+		$res->bind_param("sssss", $openid, $nickname, $headimgurl, $nowtime, $nowtime);
+		if($res->execute()) 
+			return $this->findUserByOpenid($openid);
+		else 
+			return FALSE;
+	}
+
 
 }

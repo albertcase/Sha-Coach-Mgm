@@ -13,6 +13,21 @@ class PageController extends Controller {
 	}
 
 	public function testAction() {
+		$data = array("touser"=>"oqQW1w1pPzCMyWsiD45HPTHUvaPo",
+			"msgtype"=>"text",
+			"text"=>array("content"=>"test"));
+		$api_url = "http://uat.coach.samesamechina.com/v2/wx/message2/custom/text?access_token=".TOKEN;
+	    $ch = curl_init();
+	    // print_r($ch);
+	    curl_setopt ($ch, CURLOPT_URL, $api_url);
+	    //curl_setopt($ch, CURLOPT_POST, 1);
+	    curl_setopt ($ch, CURLOPT_HEADER, 0);
+	    curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+	    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+	    $info = curl_exec($ch);
+	    curl_close($ch);
+	    var_dump($info);exit;
+		/*
 		$RedisAPI = new \Lib\RedisAPI();
 		$RedisAPI ->setParent(2,1);
 		$RedisAPI ->setParent(3,2);
@@ -23,6 +38,7 @@ class PageController extends Controller {
 		$rs= $RedisAPI ->getAllParent(5);
 		var_dump($rs);
 		echo 1;exit;
+		*/
 	}
 
 	public function qrcodeAction() {
@@ -41,7 +57,10 @@ class PageController extends Controller {
 		if($DatabaseAPI->insertReply($data, $info)) {
 			if ($info->openid != $info->scene_str) {
 				$user1 = $DatabaseAPI->findUserByOpenid($info->openid);
-				$user2 = $DatabaseAPI->findUserByOpenid($info->scene_str);
+				if (!$user1) {
+					$user1 = $DatabaseAPI->insertUserByQrcode($info->openid, $info->nickname, $info->headimgurl);
+				}
+				
 				if ($DatabaseAPI->checkband($user1->uid)) {
 					//已绑定
 					$response = array();
@@ -49,8 +68,12 @@ class PageController extends Controller {
 					$this->dataPrint($data);
 				}
 				//未绑定
+				$user2 = $DatabaseAPI->findUserByOpenid($info->scene_str);
 
-				$response = array('openid' => $info->openid, 'text' => '<a href="'.BASE_URL.'qrcode?id='.$uid.'">点击获取您的专属二维码</a>');
+				$DatabaseAPI->band($user1->uid, $user2->uid);
+				$RedisAPI = new \Lib\RedisAPI();
+				$RedisAPI ->setParent($user1->uid, $user2->uid);
+				$response = array('openid' => $info->openid, 'text' => '<a href="'.BASE_URL.'qrcode?id='.$user1->uid.'">点击获取您的专属二维码</a>');
 				$data = array('status' => 'success', 'data' => $response);
 				$this->dataPrint($data);
 			}
