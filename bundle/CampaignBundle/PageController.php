@@ -15,7 +15,7 @@ class PageController extends Controller {
 	public function testAction() {
 		$data = array("touser"=>"oqQW1w1pPzCMyWsiD45HPTHUvaPo",
 			"msgtype"=>"text",
-			"text"=>"test");
+			"text"=>array("content"=>"test"));
 		$api_url = "http://uat.coach.samesamechina.com/v2/wx/message2/custom/text?access_token=".TOKEN;
 	    $ch = curl_init();
 	    // print_r($ch);
