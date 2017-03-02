@@ -54,7 +54,7 @@ class PageController extends Controller {
 				}
 				//未绑定
 
-				$response = array('openid' => $info->openid, 'text' => '<a href="'.BASE_URL.'qrcode?id='.$uid.'">点击获取您的专属二维码</a>');
+				$response = array('openid' => $info->openid, 'text' => '<a href="'.BASE_URL.'qrcode?id='.$user1->uid.'">点击获取您的专属二维码</a>');
 				$data = array('status' => 'success', 'data' => $response);
 				$this->dataPrint($data);
 			}
