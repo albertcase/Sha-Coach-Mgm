@@ -44,8 +44,7 @@ class PageController extends Controller {
 				if (!$user1) {
 					$user1 = $DatabaseAPI->insertUserByQrcode($info->openid, $info->nickname, $info->headimgurl);
 				}
-
-				$user2 = $DatabaseAPI->findUserByOpenid($info->scene_str);
+				
 				if ($DatabaseAPI->checkband($user1->uid)) {
 					//已绑定
 					$response = array();
@@ -53,7 +52,11 @@ class PageController extends Controller {
 					$this->dataPrint($data);
 				}
 				//未绑定
+				$user2 = $DatabaseAPI->findUserByOpenid($info->scene_str);
 
+				$DatabaseAPI->band($user1->uid, $user2->uid);
+				$RedisAPI = new \Lib\RedisAPI();
+				$RedisAPI ->setParent($user1->uid, $user2->uid);
 				$response = array('openid' => $info->openid, 'text' => '<a href="'.BASE_URL.'qrcode?id='.$user1->uid.'">点击获取您的专属二维码</a>');
 				$data = array('status' => 'success', 'data' => $response);
 				$this->dataPrint($data);

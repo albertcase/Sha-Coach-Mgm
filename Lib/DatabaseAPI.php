@@ -169,6 +169,16 @@ class DatabaseAPI {
 		return NULL;
 	}
 
+	public function band($uid, $pid) {
+		$sql = "INSERT INTO `parent` set `uid` = ?, `pid` = ?"; 
+		$res = $this->connect()->prepare($sql);
+		$res->bind_param("ss", $uid, $pid);
+		if($res->execute()) 
+			return $res->insert_id;
+		else 
+			return FALSE;
+	}
+
 	/**
 	 * Create user in database
 	 */
