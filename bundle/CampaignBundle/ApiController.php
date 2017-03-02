@@ -43,4 +43,11 @@ class ApiController extends Controller {
 		}
     }
 
+    public function isloginAction() {
+
+    	global $user;
+
+    	
+    }
+
 }
