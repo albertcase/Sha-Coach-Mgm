@@ -178,7 +178,7 @@ class DatabaseAPI {
 		$res = $this->connect()->prepare($sql); 
 		$res->bind_param("sssss", $openid, $nickname, $headimgurl, $nowtime, $nowtime);
 		if($res->execute()) 
-			return $this->findUserByOpenid($userinfo->openid);
+			return $this->findUserByOpenid($openid);
 		else 
 			return FALSE;
 	}
