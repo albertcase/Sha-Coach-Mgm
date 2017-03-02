@@ -16,7 +16,7 @@ class PageController extends Controller {
 		$data = array("touser"=>"",
 			"msgtype"=>"text",
 			"text"=>"test");
-		$api_url = "http://coach.samesamechina.com/v2/wx/message2/custom/text";
+		$api_url = "http://coach.samesamechina.com/v2/wx/message2/custom/text?access_token=".TOKEN;
 	    $ch = curl_init();
 	    // print_r($ch);
 	    curl_setopt ($ch, CURLOPT_URL, $api_url);
