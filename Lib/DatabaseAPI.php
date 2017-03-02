@@ -176,7 +176,7 @@ class DatabaseAPI {
 		$nowtime = NOWTIME;
 		$sql = "INSERT INTO `user` SET `openid` = ?, `nickname` = ?, `headimgurl` = ?, `created` = ?, `updated` = ?"; 
 		$res = $this->connect()->prepare($sql); 
-		$res->bind_param("sss", $openid, $nickname, $headimgurl, $nowtime, $nowtime);
+		$res->bind_param("sssss", $openid, $nickname, $headimgurl, $nowtime, $nowtime);
 		if($res->execute()) 
 			return $this->findUserByOpenid($userinfo->openid);
 		else 
