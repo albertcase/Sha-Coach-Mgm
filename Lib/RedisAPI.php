@@ -92,4 +92,18 @@ class RedisAPI {
 		}
 		return $list;
 	}
+
+	public function setSend($uid) {
+		$this->_redis->lPushx('sendList', $uid);
+	}
+
+	public function getSend() {
+		$this->_redis->lPush('sendList', 1);
+		return $this->_redis->lSize('sendList');
+	}
+
+
+	public function flush() {
+		$this->_redis->flushAll();
+	}
 }

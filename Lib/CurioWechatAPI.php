@@ -26,17 +26,20 @@ class CurioWechatAPI {
 	}
 
 	public function sendText($openid) {
-	  	$api_url = "http://coach.samesamechina.com/v2/wx/message2/custom/text" . CURIO_TOKEN;
+	  	$data = array("touser"=>"oqQW1w1pPzCMyWsiD45HPTHUvaPo",
+			"msgtype"=>"text",
+			"text"=>array("content"=>"test"));
+		$api_url = "http://uat.coach.samesamechina.com/v2/wx/message2/custom/text?access_token=".TOKEN;
 	    $ch = curl_init();
 	    // print_r($ch);
 	    curl_setopt ($ch, CURLOPT_URL, $api_url);
 	    //curl_setopt($ch, CURLOPT_POST, 1);
 	    curl_setopt ($ch, CURLOPT_HEADER, 0);
 	    curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-	    //curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+	    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 	    $info = curl_exec($ch);
 	    curl_close($ch);
-	    $rs = json_decode($info, true);
+	    
 	    return $rs;
 	}
 

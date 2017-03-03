@@ -41,6 +41,22 @@ class PageController extends Controller {
 		*/
 	}
 
+	public function flushredisAction() {
+		$RedisAPI = new \Lib\RedisAPI();
+		
+		$rs= $RedisAPI ->flush();
+		var_dump($rs);
+		exit;
+	}
+
+	public function getsendAction() {
+		$RedisAPI = new \Lib\RedisAPI();
+		
+		$rs= $RedisAPI ->getSend();
+		var_dump($rs);
+		exit;
+	}
+
 	public function qrcodeAction() {
 		$this->render('qrcode',array('qrcode'=>'http://uat.coach.samesamechina.com/sites/default/files/kuri_wechat/qr/02V3NN9BF5eR31Sqorho1g.png'));
 	}
@@ -70,9 +86,10 @@ class PageController extends Controller {
 				//未绑定
 				$user2 = $DatabaseAPI->findUserByOpenid($info->scene_str);
 
-				$DatabaseAPI->band($user1->uid, $user2->uid);
+				//$DatabaseAPI->band($user1->uid, $user2->uid);
 				$RedisAPI = new \Lib\RedisAPI();
 				$RedisAPI ->setParent($user1->uid, $user2->uid);
+				$RedisAPI ->setSend($user1->uid);
 				$response = array('openid' => $info->openid, 'text' => '<a href="'.BASE_URL.'qrcode?id='.$user1->uid.'">点击获取您的专属二维码</a>');
 				$data = array('status' => 'success', 'data' => $response);
 				$this->dataPrint($data);
@@ -85,7 +102,6 @@ class PageController extends Controller {
 			$data = array('status' => 'success', 'data' => $response);
 			$this->dataPrint($data);
 		}
-
 
 	}
 
