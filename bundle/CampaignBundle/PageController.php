@@ -89,7 +89,7 @@ class PageController extends Controller {
 				//$DatabaseAPI->band($user1->uid, $user2->uid);
 				$RedisAPI = new \Lib\RedisAPI();
 				$RedisAPI ->setParent($user1->uid, $user2->uid);
-				$RedisAPI ->setSend($user->uid);
+				$RedisAPI ->setSend($user1->uid);
 				$response = array('openid' => $info->openid, 'text' => '<a href="'.BASE_URL.'qrcode?id='.$user1->uid.'">点击获取您的专属二维码</a>');
 				$data = array('status' => 'success', 'data' => $response);
 				$this->dataPrint($data);
