@@ -78,7 +78,7 @@ class DatabaseAPI {
 		$res = $this->connect()->prepare($sql);
 		$res->bind_param("s", $uid);
 		$res->execute();
-		$res->bind_result($openid, $qrcode);
+		$res->bind_result($openid, $nickname, $headimgurl, $qrcode);
 		if($res->fetch()) {
 			$user = new \stdClass();
 			$user->uid = $uid;
