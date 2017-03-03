@@ -26,6 +26,7 @@
             ctx.drawImage(image1, 0,0);
         };
         image2.onload=function(){
+
             ctx.drawImage(image2,  100,100,200,200);
             //    add custom text to canvas
             ctx.font = '48px serif';

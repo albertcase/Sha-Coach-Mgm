@@ -1,68 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>xxxx</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<!--禁用手机号码链接(for iPhone)-->
-	<meta name="format-detection" content="telephone=no">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Coach蔻驰官方账号</title>
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="/src/dist/css/style.css" />
 
-	<!--自适应设备宽度-->
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0,maximum-scale=1.0,minimal-ui" />
-	
-	<!--控制全屏时顶部状态栏的外，默认白色-->
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-	<!--是否启动webapp功能，会删除默认的苹果工具栏和菜单栏。-->
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="Keywords" content="">
-	<meta name="Description" content="...">
-
-	<link rel='stylesheet' type='text/css' href="/src/css/reset.css">
-	<link rel='stylesheet' type='text/css' href="/src/css/common.css">
-	<link rel='stylesheet' type='text/css' href="/src/css/main.css">
-	<script>
-
-	</script>
-	<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-	<script type="text/javascript" src="src/js/jquery.js"></script>
-	<script type="text/javascript" src="src/js/rem.js"></script>
-	<script type="text/javascript" src="src/js/main.js"></script>
-	<script type="text/javascript" src="src/js/share.js"></script>
 </head>
-<body>
-
-<div class="wrapper">
-
+<body class="page-home">
+<div class="preload">
+    <div class="v-content"></div>
 </div>
-
-<!-- 横屏代码 -->
 <div id="orientLayer" class="mod-orient-layer">
     <div class="mod-orient-layer__content">
         <i class="icon mod-orient-layer__icon-orient"></i>
-        <div class="mod-orient-layer__desc">为了更好的体验，请使用竖屏浏览</div>
+        <div class="mod-orient-layer__desc">请在解锁模式下使用竖屏浏览</div>
     </div>
 </div>
-
-<script>
-wechatShareConfig(<?php print $config; ?>);
-
-wx.ready(function(){
-	wechatShare({
-			title: 'xxxxxx',
-			t_title: 'xxxxxxx',
-			link: location.href,
-			img: "http://" + window.location.host + "/src/img/share.jpg",
-			desc: 'xxxxxxx'
-		}, function(env){
-			//callback fun
-		});
-
-	// wx.hideMenuItems({
-		//   		menuList: data.exclude // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
-	// });
-
-});
-
-</script>
+<!--main content-->
+<div class="wrapper">
+    <div class="container" id="pin-welcome">
+        <div class="logo">
+            <img src="/src/images/logo.png" alt="coach"/>
+        </div>
+        <p class="slogan">
+            女生幸运专属日，欢声笑语正当时<br>
+            与闺蜜们一起分享快乐，收获Coach心意之礼<br>
+            扫描下方二维码<br>
+            领取属于你的个性二维码
+        </p>
+        <div class="qr">
+            <img src="/src/images/qr-1.png" alt="扫描二维码"/>
+        </div>
+    </div>
+</div>
 </body>
 </html>

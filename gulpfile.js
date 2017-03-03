@@ -17,10 +17,9 @@ var path = {
     template:['./src/*.html'],
     css:['./src/assets/css/*.css'],
     js:['./src/assets/js/lib/zepto.min.js','./src/assets/js/lib/pre-loader.js','./src/assets/js/rem.js','./src/assets/js/common.js','./src/assets/js/wxshare.js','./src/assets/js/api.js','./src/assets/js/home.js'],
-    welcomejs: ['./src/assets/js/lib/zepto.min.js',"./src/assets/js/lib/swiper.min.js",'./src/assets/js/rem.js','./src/assets/js/common.js','./src/assets/js/wxshare.js','./src/assets/js/api.js','./src/assets/js/welcome.js'],
-    orderjs: ['./src/assets/js/lib/zepto.min.js','./src/assets/js/region.js','./src/assets/js/rem.js','./src/assets/js/common.js','./src/assets/js/wxshare.js','./src/assets/js/api.js','./src/assets/js/order.js'],
-    payjs: ['./src/assets/js/lib/zepto.min.js','./src/assets/js/rem.js','./src/assets/js/common.js','./src/assets/js/wxshare.js','./src/assets/js/api.js','./src/assets/js/pay.js'],
-    reservationjs: ['./src/assets/js/lib/zepto.min.js','./src/assets/js/rem.js','./src/assets/js/common.js','./src/assets/js/wxshare.js','./src/assets/js/api.js','./src/assets/js/reservation.js'],
+    welcomejs: ['./src/assets/js/lib/zepto.min.js','./src/assets/js/rem.js','./src/assets/js/common.js'],
+    joinjs: ['./src/assets/js/lib/zepto.min.js','./src/assets/js/rem.js','./src/assets/js/common.js','./src/assets/js/api.js','./src/assets/js/join.js'],
+    exchangejs: ['./src/assets/js/lib/zepto.min.js','./src/assets/js/rem.js','./src/assets/js/common.js','./src/assets/js/api.js','./src/assets/js/exchange.js'],
     images:['./src/assets/images/*'],
 };
 // Browser-sync
@@ -61,45 +60,33 @@ gulp.task('scripts_welcome',['clean'], function() {
         .pipe(uglify())
         .pipe(gulp.dest('./src/dist/js'));
 });
-gulp.task('scripts_order',['clean'], function() {
-    return gulp.src(path.orderjs)
-        .pipe(concat('order_all.js'))
+gulp.task('scripts_join',['clean'], function() {
+    return gulp.src(path.joinjs)
+        .pipe(concat('join_all.js'))
         .pipe(gulp.dest('./src/dist'))
-        .pipe(rename('order_all.min.js'))
+        .pipe(rename('join_all.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./src/dist/js'));
 });
-gulp.task('scripts_pay',['clean'], function() {
-    return gulp.src(path.payjs)
-        .pipe(concat('pay_all.js'))
+gulp.task('scripts_exchange',['clean'], function() {
+    return gulp.src(path.exchangejs)
+        .pipe(concat('exchange_all.js'))
         .pipe(gulp.dest('./src/dist'))
-        .pipe(rename('pay_all.min.js'))
+        .pipe(rename('exchange_all.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./src/dist/js'));
 });
-
-gulp.task('scripts_reservation',['clean'], function() {
-    return gulp.src(path.reservationjs)
-        .pipe(concat('reservation_all.js'))
-        .pipe(gulp.dest('./src/dist'))
-        .pipe(rename('reservation_all.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('./src/dist/js'));
-});
-
-//reservationjs
 
 
 // Watch Files For Changes
 gulp.task('watch', ['clean'],function() {
     gulp.watch(path.welcomejs, ['scripts_welcome']);
-    gulp.watch(path.orderjs, ['scripts_order']);
-    gulp.watch(path.payjs, ['scripts_pay']);
-    gulp.watch(path.reservationjs, ['scripts_reservation']);
+    gulp.watch(path.orderjs, ['scripts_join']);
+    gulp.watch(path.payjs, ['scripts_exchange']);
     gulp.watch(path.css,['css']);
 });
 
 // Default Task
-gulp.task('default', ['watch', 'scripts_welcome','scripts_order','scripts_pay','scripts_reservation','css','browser-sync']);
+gulp.task('default', ['watch', 'scripts_welcome','scripts_join','scripts_exchange','css','browser-sync']);
 
 

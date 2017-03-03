@@ -293,41 +293,6 @@ $(document).ready(function(){
 
 
 
-;(function(){
-    wx.ready(function(){
-        //wx.hideOptionMenu({
-        //    menuList: ["menuItem:share:appMessage","menuItem:share:timeline","menuItem:share:qq","menuItem:share:weiboApp","menuItem:share:facebook","menuItem:share:QZone","menuItem:copyUrl","menuItem:openWithQQBrowser","menuItem:openWithSafari","menuItem:share:email"] // 要显示的菜单项，所有menu项见附录3
-        //});
-        wx.onMenuShareAppMessage({
-            title: '与刘嘉玲、娜扎一起领略ROSSO VALENTINO梦幻之作',
-            desc: '红色SPIKE铆钉链条包，Valentino微信独家限量发售。',
-            link: 'http://rossovalentino.samesamechina.com/event/',
-            imgUrl: window.location.origin+'/src/images/share.jpg',
-            type: '',
-            dataUrl: '',
-            success: function () {
-                //    success
-                _hmt.push(['_trackEvent', 'btn-weixin', 'share', 'success']);
-
-            },
-            cancel: function () {
-            }
-        });
-        wx.onMenuShareTimeline({
-            title: '与刘嘉玲、娜扎一起领略ROSSO VALENTINO梦幻之作',
-            link: 'http://rossovalentino.samesamechina.com/event/',
-            imgUrl: window.location.origin+'/src/images/share.jpg',
-            success: function () {
-                _hmt.push(['_trackEvent', 'btn-weixin', 'share', 'success']);
-            },
-            cancel: function () {
-
-            }
-        });
-
-    })
-})();
-
 /*All the api collection*/
 Api = {
     //是否授权，并且获取用户信息
@@ -401,52 +366,48 @@ Api = {
 
 
 };
+/*For join page
+* Inclue two function, one is load new qr for each person, another is show rule popup
+* */
 ;(function(){
 
-    var controller = function(){
-    };
-    //init
-    controller.prototype.init = function(){
-        var self = this;
-        self.verifyOrder();
-    };
-
-    //确认订单
-    controller.prototype.verifyOrder = function(obj){
-        var self = this;
-        Common.gotoPin(0);
-        $('.btn-back').on('touchstart',function(){
-            _hmt.push(['_trackEvent', 'buttons', 'click', '返回修改']);
-            Common.goHomePage();
-        });
-
-        $('#pin-pay-success .btn').on('touchstart',function(){
-            _hmt.push(['_trackEvent', 'link', 'click', '探索ROSSO VALENTINO系列']);
-        });
-
-        //var orderInfo = self.orderInfo;
-        //$('#order-name').html(orderInfo.name);
-        //$('#order-phone').html(orderInfo.mobile);
-        //$('#order-mail').html(orderInfo.email);
-        //$('#order-address').html(orderInfo.province+orderInfo.city+orderInfo.address);
-        //
-        ////确认订单，开始支付请求
-        //$('.btn-submit-order').on('touchstart',function(){
-        //
-        //});
-
-    };
-
-
-    //dom ready
     $(document).ready(function(){
+        //show rule popup
+        $('.link-rule').on('touchstart', function(){
+            $('.pop-rules').addClass('show');
+        });
+        //close
+        $('body').on('touchstart', '.btn-close',function(){
+            $(this).parent().parent('.pop-rules').removeClass('show');
+        });
 
-        var valentino = new controller();
-        valentino.init();
+
+        //  load custom qrcode
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var image1 = document.getElementById('img1');
+        var image2 = document.getElementById('img2');
+        canvas.width = 300;
+        canvas.height = 300;
+        //  add two images to canvas to merge
+        image1.onload=function(){
+            ctx.drawImage(image1, 0,0);
+        };
+        image2.onload=function(){
+
+            ctx.drawImage(image2,  100,100,200,200);
+            //    add custom text to canvas
+            ctx.font = '48px serif';
+            ctx.fillText('Hello world', 50, 100);
+
+            //    export canvas to one image by dataurl
+            var dataURL = canvas.toDataURL('image/jpeg', 1.0);
+            $('#test').attr('src',dataURL);
+        };
+
 
 
     });
 
 
 })();
-
