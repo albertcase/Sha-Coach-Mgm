@@ -742,6 +742,9 @@ var region = [
 
 			return '?'+newQuery;
 		},
+		//getHash:function(url){
+		//	var curHash = location.hash
+		//},
 		msgBox:function(msg,long){
 			if(long){
 				$('body').append('<div class="ajaxpop msgbox minwidthbox"><div class="loading">'+msg+'</div></div>');
