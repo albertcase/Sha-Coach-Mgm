@@ -9,12 +9,7 @@
     <meta name="full-screen" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="/src/dist/css/style.css" />
-//    <script src="/src/assets/js/lib/zepto.min.js"></script>
-//    <script src="/src/assets/js/rem.js"></script>
-//    <script src="/src/assets/js/common.js"></script>
-//    <script src="/src/assets/js/api.js"></script>
-//    <script src="/src/assets/js/join.js"></script>
-        <script src="/src/dist/js/join_all.min.js"></script>
+    <script src="/src/dist/js/join_all.min.js"></script>
 </head>
 <body class="page-home">
 <div class="preload">
