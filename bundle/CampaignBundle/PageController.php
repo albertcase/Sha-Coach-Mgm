@@ -12,6 +12,13 @@ class PageController extends Controller {
 		exit;
 	}
 
+	public function loginAction() {
+		$userAPI = new \Lib\UserAPI();
+		$user = $userAPI->userLogin('oqQW1wz0PN8xz5xzGqgv33BmerOU');
+		echo 'Login!';
+		exit;
+	}
+
 	public function testAction() {
 		$data = array("touser"=>"oqQW1w1pPzCMyWsiD45HPTHUvaPo",
 			"msgtype"=>"text",
