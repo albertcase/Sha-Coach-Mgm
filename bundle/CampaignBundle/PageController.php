@@ -30,6 +30,7 @@ class PageController extends Controller {
 		}
 		$result = file_get_contents('http://uat.coach.samesamechina.com/api/coach/create_tmp_qr/'.$user->openid.'?access_token='.TOKEN);
 		$result = json_decode($result);
+		var_dump($result);exit;
 		header('Content-type: image/jpg');
 		echo file_get_contents($result->img_src);;
 		exit;
