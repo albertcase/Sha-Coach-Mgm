@@ -156,7 +156,7 @@ class DatabaseAPI {
 			$info->id = $id;
 			$info->name = $name;
 			$info->cellphone = $cellphone;
-			$info->$address = $address;
+			$info->address = $address;
 			return $info;
 		}
 		return NULL;
