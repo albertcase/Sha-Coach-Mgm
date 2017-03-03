@@ -23,37 +23,49 @@ Api = {
 
     },
 
-    //保存用户订单信息
-    //sex  name  mobile email province city address
-    order:function(obj,callback){
-        Common.msgBox('loading...');
-        $.ajax({
-            url:'/api/order',
-            type:'POST',
-            dataType:'json',
-            data:obj,
-            success:function(data){
-                $('.ajaxpop').remove();
-                return callback(data);
-            }
+    //获取用户表单信息
+    //name mobile address
+    getUserForm:function(callback){
+        //Common.msgBox('loading...');
+        //$.ajax({
+        //    url:'/api/order',
+        //    type:'POST',
+        //    dataType:'json',
+        //    data:obj,
+        //    success:function(data){
+        //        $('.ajaxpop').remove();
+        //        return callback(data);
+        //    }
+        //});
+
+        return callback({
+            status:1,
+            avatar:'/src/images/qr-1.png',
+            score:'100'
         });
 
 
     },
-    //预约到店
-    //sex  name  mobile  province city store month day time
-    reservation:function(obj,callback){
-        Common.msgBox('loading...');
-        $.ajax({
-            url:'/api/submit',
-            type:'POST',
-            dataType:'json',
-            data:obj,
-            success:function(data){
-                $('.ajaxpop').remove();
-                return callback(data);
-            }
+    submitUserForm:function(obj,callback){
+        //Common.msgBox('loading...');
+        //$.ajax({
+        //    url:'/api/order',
+        //    type:'POST',
+        //    dataType:'json',
+        //    data:obj,
+        //    success:function(data){
+        //        $('.ajaxpop').remove();
+        //        return callback(data);
+        //    }
+        //});
+
+        return callback({
+            status:1,
+            avatar:'/src/images/qr-1.png',
+            score:'100'
         });
+
+
     },
 
 

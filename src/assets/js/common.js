@@ -24,6 +24,21 @@
 			var results = regex.exec(location.search);
 			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 		},
+		setParameterByName:function(name,value){
+			var query = location.search.substring(1,location.search.length);
+			result = query;
+			var queryArr = query.split('&');
+			//update arr
+			var newQuery = '';
+			for(var i=0;i<queryArr.length;i++){
+				if(queryArr[i].indexOf(name)>-1){
+					queryArr[i] = name + '=' + value;
+				}
+				newQuery = newQuery+queryArr[i]+'&';
+			};
+
+			return '?'+newQuery;
+		},
 		msgBox:function(msg,long){
 			if(long){
 				$('body').append('<div class="ajaxpop msgbox minwidthbox"><div class="loading">'+msg+'</div></div>');

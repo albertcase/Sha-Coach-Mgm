@@ -8,6 +8,14 @@
     //init
     controller.prototype.init = function(){
         var self = this;
+
+        if(Common.getParameterByName('page') == 'form'){
+            Common.gotoPin(1);
+        }else{
+            Common.gotoPin(0);
+        }
+
+        //Common.setParameterByName('page','test');
         //load userinfo
         self.userInfo();
 
@@ -21,8 +29,25 @@
 
         //show contact form
         $('.show-personal span').on('touchstart',function(){
+            //fill the form
+            Api.getUserForm(function(data){
+                if(data.status==1){
+                    $('#input-name').val('123');
+                    $('#input-mobile').val('123');
+                    $('#input-address').val('123');
+                }else{
+
+                }
+            });
+            //location.search = Common.setParameterByName('page','form');
             Common.gotoPin(1);
         });
+
+        //    submit form
+        $('#form-contact .btn-submit').on('touchstart',function(){
+
+        });
+
     };
 
     //load user info and fill it
