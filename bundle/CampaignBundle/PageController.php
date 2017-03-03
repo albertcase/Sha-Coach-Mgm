@@ -24,18 +24,14 @@ class PageController extends Controller {
 		$DatabaseAPI = new \Lib\DatabaseAPI();
 		$user = $DatabaseAPI->findQrcodeByUid($id);
 		if ($user->qrcode) {
-			$image = file_get_contents($user->qrcode);  //假设当前文件夹已有图片001.jpg
-			$content=addslashes($image);
 			header('Content-type: image/jpg');
-			echo $content;
+			echo file_get_contents($user->qrcode);
 			exit;
 		}
 		$result = file_get_contents('http://uat.coach.samesamechina.com/api/coach/create_tmp_qr/'.$user->openid.'?access_token='.TOKEN);
 		$result = json_decode($result);
-		$image = file_get_contents($result->img_src);  //假设当前文件夹已有图片001.jpg
-		$content=addslashes($image);
 		header('Content-type: image/jpg');
-		echo $content;
+		echo file_get_contents($result->img_src);;
 		exit;
 	}
 
