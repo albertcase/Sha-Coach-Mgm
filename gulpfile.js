@@ -81,8 +81,8 @@ gulp.task('scripts_exchange',['clean'], function() {
 // Watch Files For Changes
 gulp.task('watch', ['clean'],function() {
     gulp.watch(path.welcomejs, ['scripts_welcome']);
-    gulp.watch(path.orderjs, ['scripts_join']);
-    gulp.watch(path.payjs, ['scripts_exchange']);
+    gulp.watch(path.joinjs, ['scripts_join']);
+    gulp.watch(path.exchangejs, ['scripts_exchange']);
     gulp.watch(path.css,['css']);
 });
 

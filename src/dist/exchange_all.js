@@ -296,69 +296,48 @@ $(document).ready(function(){
 /*All the api collection*/
 Api = {
     //是否授权，并且获取用户信息
-    isLogin:function(callback){
-        //Common.msgBox('loading...');
-        //$.ajax({
-        //    url:'/api/quota',
-        //    type:'POST',
-        //    dataType:'json',
-        //    success:function(data){
-        //        $('.ajaxpop').remove();
-        //        return callback(data);
-        //        //status=1 有库存
-        //    }
-        //});
-
-        return callback({
-            status:1,
-            avatar:'/src/images/qr-1.png',
-            score:'100'
-        })
-
-
-    },
-
     //获取用户表单信息
-    //name mobile address
-    getUserForm:function(callback){
-        //Common.msgBox('loading...');
-        //$.ajax({
-        //    url:'/api/order',
-        //    type:'POST',
-        //    dataType:'json',
-        //    data:obj,
-        //    success:function(data){
-        //        $('.ajaxpop').remove();
-        //        return callback(data);
-        //    }
-        //});
-
-        return callback({
-            status:1,
-            avatar:'/src/images/qr-1.png',
-            score:'100'
+    isLogin:function(callback){
+        Common.msgBox('loading...');
+        $.ajax({
+            url:'/api/islogin',
+            type:'POST',
+            dataType:'json',
+            success:function(data){
+                $('.ajaxpop').remove();
+                return callback(data);
+                //status=1 有库存
+            }
         });
+
+        //return callback({
+        //    status:1,
+        //    avatar:'/src/images/qr-1.png',
+        //    score:'100'
+        //})
 
 
     },
-    submitUserForm:function(obj,callback){
-        //Common.msgBox('loading...');
-        //$.ajax({
-        //    url:'/api/order',
-        //    type:'POST',
-        //    dataType:'json',
-        //    data:obj,
-        //    success:function(data){
-        //        $('.ajaxpop').remove();
-        //        return callback(data);
-        //    }
-        //});
 
-        return callback({
-            status:1,
-            avatar:'/src/images/qr-1.png',
-            score:'100'
+    //提交用户表单信息
+    submitUserForm:function(obj,callback){
+        Common.msgBox('loading...');
+        $.ajax({
+            url:'/ajax/post',
+            type:'POST',
+            dataType:'json',
+            data:obj,
+            success:function(data){
+                $('.ajaxpop').remove();
+                return callback(data);
+            }
         });
+
+        //return callback({
+        //    status:1,
+        //    avatar:'/src/images/qr-1.png',
+        //    score:'100'
+        //});
 
 
     },
@@ -398,15 +377,15 @@ Api = {
         //show contact form
         $('.show-personal span').on('touchstart',function(){
             //fill the form
-            Api.getUserForm(function(data){
-                if(data.status==1){
-                    $('#input-name').val('123');
-                    $('#input-mobile').val('123');
-                    $('#input-address').val('123');
-                }else{
-
-                }
-            });
+            //Api.getUserForm(function(data){
+            //    if(data.status==1){
+            //        $('#input-name').val('123');
+            //        $('#input-mobile').val('123');
+            //        $('#input-address').val('123');
+            //    }else{
+            //
+            //    }
+            //});
             location.hash = '#form';
             //location.search = Common.setParameterByName('page','form');
             Common.gotoPin(1);
@@ -415,10 +394,13 @@ Api = {
         //    submit form
         $('#form-contact .btn-submit').on('touchstart',function(){
             if(self.validateForm()){
+                var name =$('#input-name').val(),
+                    mobile =$('#input-mobile').val(),
+                    address =$('#input-address').val();
                 Api.submitUserForm({
-                    name:'name',
-                    mobile:'mobile',
-                    address:'address'
+                    name:name,
+                    cellphone:mobile,
+                    address:address
                 },function(data){
                     if(data.status==1){
                         console.log('login success,go page1');
@@ -437,12 +419,21 @@ Api = {
     controller.prototype.userInfo = function(){
         var self = this;
         Api.isLogin(function(data){
-            var imgAvatar = data.avatar,
-                score = data.score,
-                scoreProgress = parseInt(data.score) / 520 * 100 + '%';
-            $('.avatar img').attr('src',data.avatar);
+            var imgAvatar = data.msg.headimgurl,
+                score = data.msg.score,
+                scoreProgress = parseInt(score) / 520 * 100 + '%';
+            $('.avatar img').attr('src',imgAvatar);
             $('.stars .progress').css('width',scoreProgress);
             $('.total-score .num').html(score);
+
+            var info = data.info;
+            if(info){
+                //    user info
+                $('#input-name').val(info.name);
+                $('#input-mobile').val(info.cellphone);
+                $('#input-address').val(info.address);
+            }
+
         });
     };
 
