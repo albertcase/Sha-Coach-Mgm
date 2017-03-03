@@ -73,6 +73,24 @@ class DatabaseAPI {
 		return NULL;
 	}
 
+	public function findQrcodeByUid($uid){
+		$sql = "SELECT `openid`, `nickname`, `headimgurl`, `qrcode` FROM `user` WHERE `uid` = ?"; 
+		$res = $this->connect()->prepare($sql);
+		$res->bind_param("s", $uid);
+		$res->execute();
+		$res->bind_result($openid, $qrcode);
+		if($res->fetch()) {
+			$user = new \stdClass();
+			$user->uid = $uid;
+			$user->openid = $openid;
+			$user->nickname = $nickname;
+			$user->headimgurl = $headimgurl;
+			$user->qrcode = $qrcode;
+			return $user;
+		}
+		return NULL;
+	}
+
 	/**
 	 * 
 	 */

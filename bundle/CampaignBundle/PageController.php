@@ -7,8 +7,32 @@ class PageController extends Controller {
 
 	public function indexAction() {
 		
-		global $user;
-		echo file_get_contents('http://uat.coach.samesamechina.com/api/coach/create_tmp_qr/'.$user->openid.'?access_token='.TOKEN);
+		// global $user;
+		// echo file_get_contents('http://uat.coach.samesamechina.com/api/coach/create_tmp_qr/'.$user->openid.'?access_token='.TOKEN);
+
+		exit;
+	}
+
+	public function imageAction() {
+		
+		$request = $this->request;
+    	$fields = array(
+			'id' => array('notnull', '120')
+		);
+		$request->validation($fields);
+		$id = $request->query->get('id');
+		$DatabaseAPI = new \Lib\DatabaseAPI();
+		$user = $DatabaseAPI->findQrcodeByUid($id);
+		if ($user->qrcode) {
+			header('Content-type: image/jpg');
+			echo file_get_contents($user->qrcode);
+			exit;
+		}
+		$result = file_get_contents('http://uat.coach.samesamechina.com/api/coach/create_tmp_qr/'.$user->openid.'?access_token='.TOKEN);
+		$result = json_decode($result);
+		var_dump($result);exit;
+		header('Content-type: image/jpg');
+		echo file_get_contents($result->img_src);;
 		exit;
 	}
 
