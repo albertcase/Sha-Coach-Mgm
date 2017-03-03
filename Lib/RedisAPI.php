@@ -98,7 +98,7 @@ class RedisAPI {
 	}
 
 	public function getSend() {
-		$this->_redis->lPushx('sendList', 1);
+		$this->_redis->lPush('sendList', 1);
 		return $this->_redis->lSize('sendList');
 	}
 
