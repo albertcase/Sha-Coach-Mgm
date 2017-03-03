@@ -95,7 +95,7 @@ class DatabaseAPI {
 		$nowtime = NOWTIME;
 		$sql = "UPDATE `user` SET `qrcode` = ?, `updated` = ? WHERE `uid` = ?"; 
 		$res = $this->connect()->prepare($sql); 
-		$res->bind_param("sss", NOWTIME, $qrcode, $uid);
+		$res->bind_param("sss", $nowtime, $qrcode, $uid);
 		if($res->execute()) 
 			return TRUE;
 		else 
