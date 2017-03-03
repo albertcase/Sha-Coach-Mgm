@@ -112,6 +112,7 @@ class DatabaseAPI {
 		} else {
 			$this->insertInfo($data);
 		}
+		return TRUE;
 	} 
 
 	/**
