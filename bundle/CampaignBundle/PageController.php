@@ -89,7 +89,13 @@ class PageController extends Controller {
 	}
 
 	public function qrcodeAction() {
-		$this->render('qrcode',array('qrcode'=>'http://uat.coach.samesamechina.com/sites/default/files/kuri_wechat/qr/02V3NN9BF5eR31Sqorho1g.png'));
+		$request = $this->request;
+    	$fields = array(
+			'id' => array('notnull', '120')
+		);
+		$request->validation($fields);
+		$id = $request->query->get('id');
+		$this->render('qrcode',array('qrcode'=>BASE_URL."getimg?id=".$id));
 	}
 
 	public function replyAction() {
