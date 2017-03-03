@@ -74,7 +74,7 @@ class DatabaseAPI {
 	}
 
 	public function findQrcodeByUid($uid){
-		$sql = "SELECT `openid`, `nickname`, `headimgurl`, `qrcode` FROM `user` WHERE `id` = ?"; 
+		$sql = "SELECT `openid`, `nickname`, `headimgurl`, `qrcode` FROM `user` WHERE `uid` = ?"; 
 		$res = $this->connect()->prepare($sql);
 		$res->bind_param("s", $uid);
 		$res->execute();
