@@ -90,11 +90,7 @@ class PageController extends Controller {
 
 	public function qrcodeAction() {
 		$request = $this->request;
-    	$fields = array(
-			'id' => array('notnull', '120')
-		);
-		$request->validation($fields);
-		$id = $request->query->get('id');
+		$id = $request->query->get('id') ? $request->query->get('id') : 1;
 		$this->render('qrcode',array('qrcode'=>BASE_URL."getimg?id=".$id));
 	}
 
