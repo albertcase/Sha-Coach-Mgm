@@ -15,7 +15,6 @@
   .avatar{
     display: inline-block;
     @include size(0.75rem,0.75rem);
-    background: green;
   }
   .stars{
     position: absolute;
