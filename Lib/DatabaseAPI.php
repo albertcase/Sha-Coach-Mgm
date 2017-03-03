@@ -91,6 +91,17 @@ class DatabaseAPI {
 		return NULL;
 	}
 
+	public function saveImage($uid, $qrcode) {
+		$nowtime = NOWTIME;
+		$sql = "UPDATE `user` SET `qrcode` = ?, `updated` = ? WHERE `uid` = ?"; 
+		$res = $this->connect()->prepare($sql); 
+		$res->bind_param("sss", NOWTIME, $qrcode, $uid);
+		if($res->execute()) 
+			return TRUE;
+		else 
+			return FALSE;
+	}
+
 	/**
 	 * 
 	 */
