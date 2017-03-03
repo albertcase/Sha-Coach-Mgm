@@ -16,3 +16,5 @@ $routers['/mgm/qr/reply'] = array('CampaignBundle\Page', 'reply');
 $routers['/qrcode'] = array('CampaignBundle\Page', 'qrcode');
 $routers['/flush'] = array('CampaignBundle\Page', 'flushredis');
 $routers['/getsend'] = array('CampaignBundle\Page', 'getsend');
+$routers['/login'] = array('CampaignBundle\Page', 'login');
+$routers['/api/islogin'] = array('CampaignBundle\Api', 'islogin');

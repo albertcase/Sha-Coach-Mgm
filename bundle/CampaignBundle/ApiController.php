@@ -35,7 +35,7 @@ class ApiController extends Controller {
 		$data->cellphone = $request->request->get('cellphone');
 		$data->address = $request->request->get('address');
 
-		if($DatabaseAPI->insertInfo($data)) {
+		if($DatabaseAPI->saveInfo($data)) {
 			$data = array('status' => 1);
 			$this->dataPrint($data);
 		} else {
@@ -46,8 +46,11 @@ class ApiController extends Controller {
     public function isloginAction() {
 
     	global $user;
-
-    	
+    	$DatabaseAPI = new \Lib\DatabaseAPI();
+    	$info = $DatabaseAPI->findInfoByUid($user->uid);
+		$oauth = $DatabaseAPI->findUserByOpenid($user->openid);
+		$data = array('status' => 1, 'msg'=> $oauth, 'info' => $info);
+		$this->dataPrint($data);
     	
     }
 

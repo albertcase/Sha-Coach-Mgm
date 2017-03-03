@@ -12,6 +12,13 @@ class PageController extends Controller {
 		exit;
 	}
 
+	public function loginAction() {
+		$userAPI = new \Lib\UserAPI();
+		$user = $userAPI->userLogin('oqQW1wz0PN8xz5xzGqgv33BmerOU');
+		echo 'Login!';
+		exit;
+	}
+
 	public function testAction() {
 		$data = array("touser"=>"oqQW1w1pPzCMyWsiD45HPTHUvaPo",
 			"msgtype"=>"text",
@@ -76,8 +83,8 @@ class PageController extends Controller {
 				if (!$user1) {
 					$user1 = $DatabaseAPI->insertUserByQrcode($info->openid, $info->nickname, $info->headimgurl);
 				}
-				
-				if ($DatabaseAPI->checkband($user1->uid)) {
+				$RedisAPI = new \Lib\RedisAPI();
+				if ($RedisAPI->getParent($user1->uid)) {
 					//已绑定
 					$response = array();
 					$data = array('status' => 'success', 'data' => $response);
@@ -85,9 +92,7 @@ class PageController extends Controller {
 				}
 				//未绑定
 				$user2 = $DatabaseAPI->findUserByOpenid($info->scene_str);
-
-				//$DatabaseAPI->band($user1->uid, $user2->uid);
-				$RedisAPI = new \Lib\RedisAPI();
+				
 				$RedisAPI ->setParent($user1->uid, $user2->uid);
 				$RedisAPI ->setSend($user1->uid);
 				$response = array('openid' => $info->openid, 'text' => '<a href="'.BASE_URL.'qrcode?id='.$user1->uid.'">点击获取您的专属二维码</a>');
