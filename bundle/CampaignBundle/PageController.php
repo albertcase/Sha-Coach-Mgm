@@ -41,6 +41,22 @@ class PageController extends Controller {
 		*/
 	}
 
+	public function flushredisAction() {
+		$RedisAPI = new \Lib\RedisAPI();
+		
+		$rs= $RedisAPI ->flush();
+		var_dump($rs);
+		exit;
+	}
+
+	public function getsendAction() {
+		$RedisAPI = new \Lib\RedisAPI();
+		
+		$rs= $RedisAPI ->getSend();
+		var_dump($rs);
+		exit;
+	}
+
 	public function qrcodeAction() {
 		$this->render('qrcode',array('qrcode'=>'http://uat.coach.samesamechina.com/sites/default/files/kuri_wechat/qr/02V3NN9BF5eR31Sqorho1g.png'));
 	}

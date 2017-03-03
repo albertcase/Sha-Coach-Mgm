@@ -14,3 +14,5 @@ $routers['/test'] = array('CampaignBundle\Page', 'test');
 $routers['/api/coach/qr_scan'] = array('CampaignBundle\Page', 'qrscan');
 $routers['/mgm/qr/reply'] = array('CampaignBundle\Page', 'reply');
 $routers['/qrcode'] = array('CampaignBundle\Page', 'qrcode');
+$routers['/flush'] = array('CampaignBundle\Page', 'flushredis');
+$routers['/getsend'] = array('CampaignBundle\Page', 'getsend');
