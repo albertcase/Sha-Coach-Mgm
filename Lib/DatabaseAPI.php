@@ -78,7 +78,7 @@ class DatabaseAPI {
 		$res = $this->connect()->prepare($sql);
 		$res->bind_param("s", $uid);
 		$res->execute();
-		$res->bind_result($openid, $qrcode);
+		$res->bind_result($openid, $nickname, $headimgurl, $qrcode);
 		if($res->fetch()) {
 			$user = new \stdClass();
 			$user->uid = $uid;
@@ -89,6 +89,17 @@ class DatabaseAPI {
 			return $user;
 		}
 		return NULL;
+	}
+
+	public function saveImage($uid, $qrcode) {
+		$nowtime = NOWTIME;
+		$sql = "UPDATE `user` SET `qrcode` = ?, `updated` = ? WHERE `uid` = ?"; 
+		$res = $this->connect()->prepare($sql); 
+		$res->bind_param("sss", NOWTIME, $qrcode, $uid);
+		if($res->execute()) 
+			return TRUE;
+		else 
+			return FALSE;
 	}
 
 	/**
