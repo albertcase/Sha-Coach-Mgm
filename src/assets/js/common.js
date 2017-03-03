@@ -253,6 +253,10 @@
 
 $(document).ready(function(){
 
+//	close alert pop
+	$('body').on('touchstart','.btn-alert-ok',function(){
+		$(this).parent().parent('.alertpop').remove();
+	});
 });
 
 
