@@ -94,11 +94,16 @@ class RedisAPI {
 	}
 
 	public function setSend($uid) {
-		$this->_redis->lPushx('sendList', $uid);
+		if ($this->_redis->lSize('sendList') == 0) {
+			$this->_redis->lPush('sendList', $uid);
+		} else {
+			$this->_redis->lPushx('sendList', $uid);
+		}
+		return $this->_redis->lSize('sendList');
 	}
 
 	public function getSend() {
-		$this->_redis->lPush('sendList', 1);
+		
 		return $this->_redis->lSize('sendList');
 	}
 
