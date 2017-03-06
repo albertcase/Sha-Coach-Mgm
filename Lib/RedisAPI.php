@@ -107,6 +107,12 @@ class RedisAPI {
 		return $this->_redis->lSize('sendList');
 	}
 
+	public function getKey() {
+		var_dump($this->_redis->keys('parent:*'));
+		var_dump($this->_redis->keys('sendList'));
+		exit;
+	}
+
 
 	public function flush() {
 		$this->_redis->flushAll();
