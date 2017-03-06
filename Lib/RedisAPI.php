@@ -125,15 +125,15 @@ class RedisAPI {
 		$RedisAPI = new \Lib\RedisAPI();
 		$uid = $RedisAPI->popSend();
 		if (!$uid) {
-			return false;
+			return 0;
 		}
 		//给上级加分
 		$pid = $RedisAPI->getParent($uid);
 		if (!$pid) {
-			return false;
+			return 0;
 		}
 		if ($pid == 1) {
-			return false;
+			return 0;
 		}
 		$DatabaseAPI = new \Lib\DatabaseAPI();
 		$user = $DatabaseAPI->findQrcodeByUid($uid);
