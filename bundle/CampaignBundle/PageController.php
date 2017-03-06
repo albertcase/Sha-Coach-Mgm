@@ -85,6 +85,8 @@ class PageController extends Controller {
 		
 		$rs= $RedisAPI ->getSend();
 		var_dump($rs);
+		echo '</br>';
+		$RedisAPI->getKey();
 		exit;
 	}
 
