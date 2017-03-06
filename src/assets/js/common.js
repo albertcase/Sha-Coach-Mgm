@@ -5,19 +5,6 @@
 			$('.wrapper .pin').removeClass('current');
 			$('.wrapper .pin').eq(num).addClass('current');
 		},
-		goHomePage:function(ishas){
-			if(ishas){
-				window.location.href = '/ec/?ishas=1';
-			}else{
-				window.location.href = '/ec/';
-			}
-		},
-		goOrderPage:function(){
-			window.location.href = '/ec/order';
-		},
-		goPayPage:function(){
-			window.location.href = '/ec/pay';
-		},
 		getParameterByName:function(name){
 			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
@@ -39,9 +26,6 @@
 
 			return '?'+newQuery;
 		},
-		//getHash:function(url){
-		//	var curHash = location.hash
-		//},
 		msgBox:function(msg,long){
 			if(long){
 				$('body').append('<div class="ajaxpop msgbox minwidthbox"><div class="loading">'+msg+'</div></div>');
@@ -232,6 +216,7 @@
 			}
 
 			var element = settings.element || document;
+			console.log(element);
 
 			element.addEventListener("touchstart", handleTouchStart);
 			element.addEventListener("touchmove", handleTouchMove);
@@ -243,9 +228,9 @@
 		return module;
 	}();
 
-	noBounce.init({
-		animate: false
-	});
+	//noBounce.init({
+	//	animate: false
+	//});
 
 	this.Common = Common;
 

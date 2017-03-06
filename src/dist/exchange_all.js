@@ -40,19 +40,6 @@ var Zepto=function(){function L(t){return null==t?String(t):j[S.call(t)]||"objec
 			$('.wrapper .pin').removeClass('current');
 			$('.wrapper .pin').eq(num).addClass('current');
 		},
-		goHomePage:function(ishas){
-			if(ishas){
-				window.location.href = '/ec/?ishas=1';
-			}else{
-				window.location.href = '/ec/';
-			}
-		},
-		goOrderPage:function(){
-			window.location.href = '/ec/order';
-		},
-		goPayPage:function(){
-			window.location.href = '/ec/pay';
-		},
 		getParameterByName:function(name){
 			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
@@ -74,9 +61,6 @@ var Zepto=function(){function L(t){return null==t?String(t):j[S.call(t)]||"objec
 
 			return '?'+newQuery;
 		},
-		//getHash:function(url){
-		//	var curHash = location.hash
-		//},
 		msgBox:function(msg,long){
 			if(long){
 				$('body').append('<div class="ajaxpop msgbox minwidthbox"><div class="loading">'+msg+'</div></div>');
@@ -267,6 +251,7 @@ var Zepto=function(){function L(t){return null==t?String(t):j[S.call(t)]||"objec
 			}
 
 			var element = settings.element || document;
+			console.log(element);
 
 			element.addEventListener("touchstart", handleTouchStart);
 			element.addEventListener("touchmove", handleTouchMove);
@@ -278,9 +263,9 @@ var Zepto=function(){function L(t){return null==t?String(t):j[S.call(t)]||"objec
 		return module;
 	}();
 
-	noBounce.init({
-		animate: false
-	});
+	//noBounce.init({
+	//	animate: false
+	//});
 
 	this.Common = Common;
 
