@@ -109,7 +109,7 @@ class RedisAPI {
 
 	public function getKey() {
 		var_dump($this->_redis->keys('parent:*'));
-		var_dump($this->_redis->get('sendList'));
+		var_dump($this->_redis->lget('sendList'));
 		exit;
 	}
 
