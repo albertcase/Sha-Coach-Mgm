@@ -245,4 +245,16 @@ class DatabaseAPI {
 			return FALSE;
 	}
 
+	public function checkGift($uid) {
+		$sql = "SELECT count(`id`) as num FROM `exchange` WHERE `uid` = ?"; 
+		$res = $this->connect()->prepare($sql);
+		$res->bind_param("s", $uid);
+		$res->execute();
+		$res->bind_result($num);
+		if($res->fetch()) {
+			return $num;
+		}
+		return 0;
+	}
+
 }

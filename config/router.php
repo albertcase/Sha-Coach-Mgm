@@ -19,3 +19,6 @@ $routers['/getsend'] = array('CampaignBundle\Page', 'getsend');
 $routers['/login'] = array('CampaignBundle\Page', 'login');
 $routers['/api/islogin'] = array('CampaignBundle\Api', 'islogin');
 $routers['/getimg'] = array('CampaignBundle\Page', 'image');
+$routers['/api/check'] = array('CampaignBundle\Api', 'check');
+$routers['/api/exchange'] = array('CampaignBundle\Api', 'exchange');
+$routers['/api/prizelist'] = array('CampaignBundle\Api', 'prizelist');

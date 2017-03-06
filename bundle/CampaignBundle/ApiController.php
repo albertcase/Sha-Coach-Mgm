@@ -54,4 +54,18 @@ class ApiController extends Controller {
     	
     }
 
+    public function checkAction() {
+    	global $user;
+    	$DatabaseAPI = new \Lib\DatabaseAPI();
+    	$count = $DatabaseAPI->checkGift($user->uid);
+    	if ($count>=2) {
+    		$data = array('status' => 0);
+			$this->dataPrint($data);
+    	} else {
+    		$data = array('status' => 1);
+			$this->dataPrint($data);
+    	}
+    	
+    }
+
 }
