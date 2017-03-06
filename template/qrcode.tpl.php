@@ -29,18 +29,16 @@
         </div>
         <p class="slogan">
             你的专属二维码已经准备就绪<br>
-            召集蜜友来助力，扫描积分赢人气<br>
-            Coach多重惊喜正在前方召唤<br>
-            姐姐妹妹站起来，这次宝贝都靠你
+            姐姐妹妹站起来，这次宝贝都靠你<br>
+            长按二维码或截屏即可邀请好友参加
         </p>
         <div class="block-qr">
             <div class="product-1" style="display: none">
-                <img id="img1" src="/src/images/product-1.jpg" alt="product"/>
                 <img id="img2" src="<?php echo $qrcode;?>" alt="qrcode">
             </div>
             <canvas id="canvas"></canvas>
-            <div >
-                <img id="test" src="" alt=""/>
+            <div class='generate-img'>
+                <img id="result-img" src="" alt=""/>
             </div>
         </div>
         <div class="btn btn-exchange"><a href="exchange.html">积分兑换</a></div>
