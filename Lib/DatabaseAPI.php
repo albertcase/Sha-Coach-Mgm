@@ -215,9 +215,9 @@ class DatabaseAPI {
 	 */
 	public function insertUserByQrcode($openid, $nickname, $headimgurl){
 		$nowtime = NOWTIME;
-		$sql = "INSERT INTO `user` SET `openid` = ?, `nickname` = ?, `headimgurl` = ?, `created` = ?, `updated` = ?"; 
+		$sql = "INSERT INTO `user` SET `openid` = '".$openid."', `nickname` = '".$nickname."', `headimgurl` = '".$headimgurl."', `created` = ?, `updated` = ?"; 
 		$res = $this->connect()->prepare($sql); 
-		$res->bind_param("sssss", $openid, $nickname, $headimgurl, $nowtime, $nowtime);
+		$res->bind_param("ss", $nowtime, $nowtime);
 		if($res->execute()) 
 			return $this->findUserByOpenid($openid);
 		else 
