@@ -64,7 +64,7 @@ class PageController extends Controller {
 			echo 0;
 			exit;
 		}
-		$pid = getParent($uid);
+		$pid = $RedisAPI->getParent($uid);
 		if (!$pid) {
 			echo 0;
 			exit;
