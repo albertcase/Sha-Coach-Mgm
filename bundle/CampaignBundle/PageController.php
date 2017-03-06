@@ -46,11 +46,7 @@ class PageController extends Controller {
 	public function testAction() {
 		
 		$RedisAPI = new \Lib\RedisAPI();
-		//$uid = $RedisAPI->popSend();
-		$RedisAPI ->setParent(3,2);
-		$RedisAPI ->setParent(4,3);
-		$RedisAPI ->setParent(5,4);
-		$uid = 5;
+		$uid = $RedisAPI->popSend();
 		if (!$uid) {
 			echo 0;
 			exit;
@@ -68,12 +64,12 @@ class PageController extends Controller {
 		$DatabaseAPI = new \Lib\DatabaseAPI();
 		$user = $DatabaseAPI->findQrcodeByUid($uid);
 		$parent = $DatabaseAPI->findQrcodeByUid($pid);
-		//$CurioWechatAPI = new \Lib\CurioWechatAPI();
-		//$CurioWechatAPI->sendText($parent->openid, $user->nickname.'通过关注为您获取40积分');
+		$CurioWechatAPI = new \Lib\CurioWechatAPI();
+		$CurioWechatAPI->sendText($parent->openid, $user->nickname.'通过关注为您获取40积分');
 		//给上级的上级加分
 		while ($pid = $RedisAPI->getParent($pid)) {
 			$parents = $DatabaseAPI->findQrcodeByUid($pid);
-			echo $parent->nickname.'|'.$parents->nickname.'</br>';
+			$CurioWechatAPI->sendText($parents->openid, $parent->nickname.'通过下级关注为您获取20积分');
 			$parent = $parents;
 		}
 		exit;
