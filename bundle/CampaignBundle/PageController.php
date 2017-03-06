@@ -73,7 +73,7 @@ class PageController extends Controller {
 			$parents = $DatabaseAPI->findQrcodeByUid($pid);
 			$CurioWechatAPI->sendText($parents->openid, $parent->nickname.'通过下级关注为您获取20积分');
 			$DatabaseAPI->scorePlus($parents->uid, 20);
-			$DatabaseAPI->scoreLog($parent->uid, $parents->uid, 20, '下级关注');
+			$DatabaseAPI->scoreLog($uid, $parents->uid, 20, '下级关注');
 			$parent = $parents;
 		}
 		exit;
