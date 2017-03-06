@@ -224,5 +224,25 @@ class DatabaseAPI {
 			return FALSE;
 	}
 
+	public function scorePlus($uid, $score) {
+		$sql = "UPDATE `user` SET `score` = `score` + ?"; 
+		$res = $this->connect()->prepare($sql); 
+		$res->bind_param("s", $score);
+		if($res->execute()) 
+			return TRUE;
+		else 
+			return FALSE;
+	}
+
+	public function scoreLog($uid, $pid, $score, $type){
+		$nowtime = NOWTIME;
+		$sql = "INSERT INTO `score` SET `uid` = ?, `rid` = ?, `score` = ?, `type` = ?"; 
+		$res = $this->connect()->prepare($sql); 
+		$res->bind_param("ssss", $pid, $uid, $score, $type);
+		if($res->execute()) 
+			return TRUE;
+		else 
+			return FALSE;
+	}
 
 }
