@@ -120,4 +120,38 @@ class RedisAPI {
 	public function flush() {
 		$this->_redis->flushAll();
 	}
+
+	public function runScript() {
+		$RedisAPI = new \Lib\RedisAPI();
+		$uid = $RedisAPI->popSend();
+		if (!$uid) {
+			return 0;
+		}
+		//给上级加分
+		$pid = $RedisAPI->getParent($uid);
+		if (!$pid) {
+			return 0;
+		}
+		if ($pid == 1) {
+			return 0;
+		}
+		$DatabaseAPI = new \Lib\DatabaseAPI();
+		$user = $DatabaseAPI->findQrcodeByUid($uid);
+		$parent = $DatabaseAPI->findQrcodeByUid($pid);
+		$CurioWechatAPI = new \Lib\CurioWechatAPI();
+		$CurioWechatAPI->sendText($parent->openid, $user->nickname.'通过关注为您获取20积分');
+		$DatabaseAPI->scorePlus($parent->uid, 20);
+		$DatabaseAPI->scoreLog($uid, $parent->uid, 20, '关注');
+		//给上级的上级加分
+		$return = 0;
+		while ($pid = $RedisAPI->getParent($pid)) {
+			$parents = $DatabaseAPI->findQrcodeByUid($pid);
+			$CurioWechatAPI->sendText($parents->openid, $parent->nickname.'通过下级关注为您获取5积分');
+			$DatabaseAPI->scorePlus($parents->uid, 5);
+			$DatabaseAPI->scoreLog($uid, $parents->uid, 5, '下级关注');
+			$parent = $parents;
+			$return++;
+		}
+		return $return;
+	}
 }
