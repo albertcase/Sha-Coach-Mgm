@@ -73,6 +73,7 @@ class PageController extends Controller {
 			echo 0;
 			exit;
 		}
+		$DatabaseAPI = new \Lib\DatabaseAPI();
 		$user = $DatabaseAPI->findQrcodeByUid($uid);
 		$parent = $DatabaseAPI->findQrcodeByUid($pid);
 		$CurioWechatAPI = new \Lib\CurioWechatAPI();
