@@ -9,6 +9,7 @@
     <meta name="full-screen" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="/src/dist/css/style.css" />
+    <script src=" http://uat.coach.samesamechina.com/api/v1/js/e5fc5e16-eae6-4aaa-91c7-66a574fa6c7e/wechat"></script>
     <script src="/src/dist/js/join_all.min.js"></script>
 </head>
 <body class="page-home">
@@ -41,7 +42,7 @@
                 <img id="result-img" src="" alt=""/>
             </div>
         </div>
-        <div class="btn btn-exchange"><a href="exchange.html">积分兑换</a></div>
+        <div class="btn btn-exchange"><a href="/template/exchange.html">积分兑换</a></div>
         <div class="link-rule">
             <span>活动细则</span>
         </div>

@@ -182,7 +182,9 @@ img{
     font-size: 0.28rem;
     padding: 0.7rem 0.6rem;
     height: 6rem;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     p{
       margin-bottom: 0.5rem;
     }
