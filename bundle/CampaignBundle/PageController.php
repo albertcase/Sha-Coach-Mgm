@@ -71,8 +71,8 @@ class PageController extends Controller {
 		//$CurioWechatAPI = new \Lib\CurioWechatAPI();
 		//$CurioWechatAPI->sendText($parent->openid, $user->nickname.'通过关注为您获取40积分');
 		//给上级的上级加分
-		while ($leader = $RedisAPI->getParent($pid)) {
-			$parents = $DatabaseAPI->findQrcodeByUid($leader);
+		while ($pid = $RedisAPI->getParent($pid)) {
+			$parents = $DatabaseAPI->findQrcodeByUid($pid);
 			echo $parent->nickname.'|'.$parents->nickname.'</br>';
 			$parent = $parents;
 		}
