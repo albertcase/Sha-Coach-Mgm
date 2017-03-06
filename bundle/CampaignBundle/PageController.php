@@ -44,26 +44,18 @@ class PageController extends Controller {
 	}
 
 	public function testAction() {
-		// $data = array("touser"=>"oqQW1w1pPzCMyWsiD45HPTHUvaPo",
-		// 	"msgtype"=>"text",
-		// 	"text"=>array("content"=>"test"));
-		// $api_url = "http://uat.coach.samesamechina.com/v2/wx/message2/custom/text?access_token=".TOKEN;
-	 //    $ch = curl_init();
-	 //    // print_r($ch);
-	 //    curl_setopt ($ch, CURLOPT_URL, $api_url);
-	 //    //curl_setopt($ch, CURLOPT_POST, 1);
-	 //    curl_setopt ($ch, CURLOPT_HEADER, 0);
-	 //    curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-	 //    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-	 //    $info = curl_exec($ch);
-	 //    curl_close($ch);
-	 //    var_dump($info);exit;
+		
 		$RedisAPI = new \Lib\RedisAPI();
-		$uid = $RedisAPI->popSend();
+		//$uid = $RedisAPI->popSend();
+		$RedisAPI ->setParent(3,2);
+		$RedisAPI ->setParent(4,3);
+		$RedisAPI ->setParent(5,4);
+		$uid = 5;
 		if (!$uid) {
 			echo 0;
 			exit;
 		}
+		//给上级加分
 		$pid = $RedisAPI->getParent($uid);
 		if (!$pid) {
 			echo 0;
@@ -76,8 +68,13 @@ class PageController extends Controller {
 		$DatabaseAPI = new \Lib\DatabaseAPI();
 		$user = $DatabaseAPI->findQrcodeByUid($uid);
 		$parent = $DatabaseAPI->findQrcodeByUid($pid);
-		$CurioWechatAPI = new \Lib\CurioWechatAPI();
-		$CurioWechatAPI->sendText($parent->openid, $user->nickname.'为您获取40积分');
+		//$CurioWechatAPI = new \Lib\CurioWechatAPI();
+		//$CurioWechatAPI->sendText($parent->openid, $user->nickname.'通过关注为您获取40积分');
+		//给上级的上级加分
+		$leader = $pid;
+		while ($leader = $RedisAPI->getParent($leader)) {
+			echo $leader;
+		}
 		exit;
 		/*
 		$RedisAPI = new \Lib\RedisAPI();
