@@ -1086,13 +1086,27 @@ html, body {
   margin: 0 auto;
 }
 
+#pin-join .logo {
+  padding-top: 0.2rem;
+  margin: 0 auto 0.2rem;
+}
 #pin-join .slogan {
   font-size: 0.28rem;
-  margin: 0.6rem auto;
+  margin: 0.2rem auto;
   text-align: center;
 }
 #pin-join .block-qr {
   position: relative;
+}
+#pin-join .block-qr #canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+#pin-join .block-qr .generate-img {
+  position: relative;
+  z-index: 2;
 }
 #pin-join .block-qr .product-1 {
   width: 3.9rem;
@@ -1111,7 +1125,7 @@ html, body {
   height: 2.68rem;
 }
 #pin-join .btn {
-  margin: 0.8rem auto 0.5rem;
+  margin: 0.4rem auto 0.2rem;
 }
 #pin-join .btn a {
   display: block;
