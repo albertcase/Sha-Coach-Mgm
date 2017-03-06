@@ -59,7 +59,25 @@ class PageController extends Controller {
 	 //    curl_close($ch);
 	 //    var_dump($info);exit;
 		$RedisAPI = new \Lib\RedisAPI();
-		echo $uid = $RedisAPI->popSend();exit;
+		$uid = $RedisAPI->popSend();
+		if (!$uid) {
+			echo 0;
+			exit;
+		}
+		$pid = getParent($uid);
+		if (!$pid) {
+			echo 0;
+			exit;
+		}
+		if ($pid == 1) {
+			echo 0;
+			exit;
+		}
+		$user = $DatabaseAPI->findQrcodeByUid($uid);
+		$parent = $DatabaseAPI->findQrcodeByUid($pid);
+		$CurioWechatAPI = new \Lib\CurioWechatAPI();
+		$CurioWechatAPI->sendText($parent->openid, $user->nickname.'为您获取40积分');
+		exit;
 		/*
 		$RedisAPI = new \Lib\RedisAPI();
 		$RedisAPI ->setParent(2,1);
