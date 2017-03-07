@@ -13,14 +13,38 @@
             $(this).parent().parent('.pop-rules').removeClass('show');
         });
 
+        //preload all images
+        function loadImages(sources, callback) {
+            var images = {};
+            var loadedImages = 0;
+            var numImages = 0;
+            // get num of sources
+            for(var src in sources) {
+                numImages++;
+            }
+            for(var src in sources) {
+                images[src] = new Image();
+                images[src].onload = function() {
+                    if(++loadedImages >= numImages) {
+                        callback(images);
+                    }
+                };
+                images[src].src = sources[src];
+            }
+        }
+
+        var sources = {
+            bag1: '/src/images/bag-1.jpg',
+            bag2: '/src/images/bag-2.jpg',
+            bag3: '/src/images/bag-3.jpg',
+            qr:$('#img2').attr('src')
+        };
 
         //  load custom qrcode
         Common.msgBox('图片生成中...');
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
         var image2 = document.getElementById('img2');
-        var image1 = new Image();
-        image1.src = '/src/images/bag-'+Math.round(Math.random() * (3 - 1) + 1)+'.jpg';
 
         //the image width is 750*610,relative window width is 100%
         var cWidth = window.innerWidth,
@@ -32,15 +56,14 @@
 
         canvas.width = cWidth;
         canvas.height = cHeight;
-        //  add two images to canvas to merge
-        image1.onload=function(){
-            ctx.drawImage(image1, 0,0,img1Width,img1Height);
-        };
-
         //the qrcode image is 210*210
-        image2.onload=function(){
 
+        loadImages(sources, function(images) {
+            var image1 = new Image();
+            image1.src = '/src/images/bag-'+Math.round(Math.random() * (3 - 1) + 1)+'.jpg';
+            ctx.drawImage(image1, 0,0,img1Width,img1Height);
             ctx.drawImage(image2, img2Left,img1Height-img2Width/2,img2Width,img2Width);
+
             //    add custom text to canvas
             var fsize = parseInt(22 * cWidth / 750) + 'px',
                 fLeft = parseInt(460 * cWidth / 750);
@@ -53,7 +76,13 @@
             var dataURL = canvas.toDataURL('image/jpg', 1.0);
             $('#result-img').attr('src',dataURL);
             $('.ajaxpop').remove();
-        };
+        });
+
+
+
+
+
+
 
 
 
