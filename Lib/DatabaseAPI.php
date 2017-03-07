@@ -225,9 +225,9 @@ class DatabaseAPI {
 	}
 
 	public function scorePlus($uid, $score) {
-		$sql = "UPDATE `user` SET `score` = `score` + ? where uid= ?"; 
+		$sql = "UPDATE `user` SET `score` = `score` + ?, `maxscore` = `maxscore` + ? where uid= ?"; 
 		$res = $this->connect()->prepare($sql); 
-		$res->bind_param("ss", $score, $uid);
+		$res->bind_param("sss", $score, abs($score),  $uid);
 		if($res->execute()) 
 			return TRUE;
 		else 
