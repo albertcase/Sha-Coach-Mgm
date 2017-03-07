@@ -287,4 +287,15 @@ class DatabaseAPI {
 		return 0;
 	}
 
+	public function exchange($uid, $pid, $pname, $score){
+		$nowtime = NOWTIME;
+		$sql = "INSERT INTO `exchange` SET `uid` = ?, `prize` = ?, `prizename` = ?, `score` = ?"; 
+		$res = $this->connect()->prepare($sql); 
+		$res->bind_param("ssss", $uid, $pid, $pname, $score);
+		if($res->execute()) 
+			return TRUE;
+		else 
+			return FALSE;
+	}
+
 }
