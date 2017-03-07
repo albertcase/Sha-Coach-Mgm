@@ -38,7 +38,7 @@ class PageController extends Controller {
 
 	public function loginAction() {
 		$userAPI = new \Lib\UserAPI();
-		$user = $userAPI->userLogin('oqQW1wz0PN8xz5xzGqgv33BmerOU');
+		$user = $userAPI->userLogin('oqQW1w1pPzCMyWsiD45HPTHUvaPo');
 		echo 'Login!';
 		exit;
 	}
