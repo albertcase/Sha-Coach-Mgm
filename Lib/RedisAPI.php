@@ -140,14 +140,14 @@ class RedisAPI {
 		$parent = $DatabaseAPI->findQrcodeByUid($pid);
 		$CurioWechatAPI = new \Lib\CurioWechatAPI();
 		$CurioWechatAPI->sendText($parent->openid, $user->nickname.'通过关注为您获取20积分');
-		$DatabaseAPI->scorePlus($parent->uid, 20);
+		$DatabaseAPI->scorePlus($parent->uid, 20, 20);
 		$DatabaseAPI->scoreLog($uid, $parent->uid, 20, '关注');
 		//给上级的上级加分
 		$return = 0;
 		while ($pid = $RedisAPI->getParent($pid)) {
 			$parents = $DatabaseAPI->findQrcodeByUid($pid);
 			$CurioWechatAPI->sendText($parents->openid, $parent->nickname.'通过下级关注为您获取5积分');
-			$DatabaseAPI->scorePlus($parents->uid, 5);
+			$DatabaseAPI->scorePlus($parents->uid, 5, 5);
 			$DatabaseAPI->scoreLog($uid, $parents->uid, 5, '下级关注');
 			$parent = $parents;
 			$return++;
