@@ -10,6 +10,7 @@ var rename = require('gulp-rename'),
     del = require('del'),
     babel = require("gulp-babel"),
     browserSync = require('browser-sync').create();
+var tinypng = require('gulp-tinypng-compress');
 
 //Define the app path
 var path = {
@@ -77,6 +78,18 @@ gulp.task('scripts_exchange',['clean'], function() {
         .pipe(gulp.dest('./src/dist/js'));
 });
 
+// Concatenate & Minify
+gulp.task("tinypng", function(){
+    gulp.src(['./src/images/*.{png,jpg,jpeg}','./src/images/*/*.{png,jpg,jpeg}','./src/images/*/*/*.{png,jpg,jpeg}'])
+        .pipe(tinypng({
+            key: '-ID8TBnbSlRuMCc_mMagta65Q7IDyaQ-',
+            sigFile: './src/.tinypng-sigs',
+            log: true
+        })).on('error', function(err) {
+            console.error(err.message);
+        })
+        .pipe(gulp.dest('./src/images/'));
+});
 
 // Watch Files For Changes
 gulp.task('watch', ['clean'],function() {
