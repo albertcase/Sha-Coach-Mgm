@@ -257,4 +257,34 @@ class DatabaseAPI {
 		return 0;
 	}
 
+	public function getScore($uid) {
+		$sql = "SELECT score  FROM `user` WHERE `uid` = ?"; 
+		$res = $this->connect()->prepare($sql);
+		$res->bind_param("s", $uid);
+		$res->execute();
+		$res->bind_result($score);
+		if($res->fetch()) {
+			return $score;
+		}
+		return 0;
+	}
+
+	public function getPrizeById($id) {
+		$sql = "SELECT `id`, `name`, `image`, `quota`, `score` FROM `prize` WHERE `id` = ?"; 
+		$res = $this->connect()->prepare($sql);
+		$res->bind_param("s", $id);
+		$res->execute();
+		$res->bind_result($id, $name, $image, $quota, $score);
+		if($res->fetch()) {
+			$info = new \stdClass();
+			$info->id = $id;
+			$info->name = $name;
+			$info->image = $image;
+			$info->quota = $quota;
+			$info->score = $score;
+			return $info;
+		}
+		return 0;
+	}
+
 }

@@ -68,4 +68,46 @@ class ApiController extends Controller {
     	
     }
 
+    public function exchangeAction() {
+
+        global $user;
+
+        $request = $this->request;
+        $fields = array(
+            'id' => array('notnull', '120'),
+        );
+        $request->validation($fields);
+        $id = $request->request->get('id');
+
+        $DatabaseAPI = new \Lib\DatabaseAPI();
+        $score = $DatabaseAPI->getScore($user->uid);
+
+        $count = $DatabaseAPI->checkGift($user->uid);
+        if ($count>=2) {
+            $data = array('status' => 3, 'msg' => '已经兑换过两份礼品');
+            $this->dataPrint($data);
+        }
+
+        $prize = $DatabaseAPI->getPrizeById($id);
+        if (!$prize) {
+            $data = array('status' => 5, 'msg' => '非法提交');
+            $this->dataPrint($data);
+        }
+        if ($prize->quota<=0) {
+            $data = array('status' => 4, 'msg' => '库存不足');
+            $this->dataPrint($data);
+        }
+        if ($prize->score >= $score) {
+            $data = array('status' => 2, 'msg' => '积分不足');
+            $this->dataPrint($data);
+        }
+
+        $DatabaseAPI->exchange($user->uid, $id, $prize->name, $prize->score);
+        $DatabaseAPI->scorePlus($user->uid, -$score);
+        $DatabaseAPI->scoreLog($user->uid, 0, -$score, '积分兑换');
+        $data = array('status' => 1, 'msg' => '兑换成功');
+        $this->dataPrint($data);
+        
+    }
+
 }
