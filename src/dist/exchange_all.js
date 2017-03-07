@@ -479,8 +479,21 @@ Api = {
         var self = this;
         Api.isLogin(function(data){
             var imgAvatar = data.msg.headimgurl,
-                score = data.msg.score,
-                scoreProgress = parseInt(score) / 520 * 100 + '%';
+                score = data.msg.score;
+            var scoreProgress =0;
+            if(score>100 && score<5000){
+                //    star num is 1
+                scoreProgress = '33.3%';
+            } else if(score>=5000 && score<10000){
+                //    star num is 2
+                scoreProgress = '66.6%';
+            }else if(score>=10000){
+                //    star num is 3
+                scoreProgress = '100%';
+            }else{
+                //    star num is 0
+                scoreProgress = '0';
+            }
             $('.avatar img').attr('src',imgAvatar);
             $('.stars .progress').css('width',scoreProgress);
             $('.total-score .num').html(score);
@@ -499,7 +512,14 @@ Api = {
         Api.prizeList(function(data){
 
             if(data.status==1){
-                if(data.msg.prizelist)
+                if(data.msg.length>0){
+                    var pList = '';
+                    for(var i=0;i<data.msg.length;i++){
+                        pList = pList + '';
+                    };
+                }else{
+                    Common.alertBox.add('暂时没有奖品');
+                }
             }else{
                 Common.alertBox.add(data.msg);
             }
