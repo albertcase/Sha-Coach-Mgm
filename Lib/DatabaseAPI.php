@@ -57,11 +57,11 @@ class DatabaseAPI {
 	 * Create user in database
 	 */
 	public function findUserByOpenid($openid){
-		$sql = "SELECT `uid`, `openid`, `nickname`, `headimgurl`, `score` FROM `user` WHERE `openid` = ?"; 
+		$sql = "SELECT `uid`, `openid`, `nickname`, `headimgurl`, `score`, `maxscore` FROM `user` WHERE `openid` = ?"; 
 		$res = $this->connect()->prepare($sql);
 		$res->bind_param("s", $openid);
 		$res->execute();
-		$res->bind_result($uid, $openid, $nickname, $headimgurl, $score);
+		$res->bind_result($uid, $openid, $nickname, $headimgurl, $score, $maxscore);
 		if($res->fetch()) {
 			$user = new \stdClass();
 			$user->uid = $uid;
@@ -69,6 +69,7 @@ class DatabaseAPI {
 			$user->nickname = $nickname;
 			$user->headimgurl = $headimgurl;
 			$user->score = $score;
+			$user->maxscore = $maxscore;
 			return $user;
 		}
 		return NULL;
