@@ -33,6 +33,13 @@
               id:1
             },function(data){
                 console.log(data);
+                if(data.status==1){
+                    //do something
+
+                }else{
+                    Common.alertBox.add(data.msg);
+                }
+
             });
         });
 
@@ -100,9 +107,16 @@
 
         //get all prize list
         Api.prizeList(function(data){
-            console.log(data);
-            if(data.status==1){
 
+            if(data.status==1){
+                if(data.msg.length>0){
+                    var pList = '';
+                    for(var i=0;i<data.msg.length;i++){
+                        pList = pList + '';
+                    };
+                }else{
+                    Common.alertBox.add('暂时没有奖品');
+                }
             }else{
                 Common.alertBox.add(data.msg);
             }

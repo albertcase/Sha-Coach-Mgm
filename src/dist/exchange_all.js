@@ -423,6 +423,13 @@ Api = {
               id:1
             },function(data){
                 console.log(data);
+                if(data.status==1){
+                    //do something
+
+                }else{
+                    Common.alertBox.add(data.msg);
+                }
+
             });
         });
 
@@ -490,9 +497,9 @@ Api = {
 
         //get all prize list
         Api.prizeList(function(data){
-            console.log(data);
-            if(data.status==1){
 
+            if(data.status==1){
+                if(data.msg.prizelist)
             }else{
                 Common.alertBox.add(data.msg);
             }
