@@ -98,7 +98,7 @@ class ApiController extends Controller {
             $data = array('status' => 4, 'msg' => '库存不足');
             $this->dataPrint($data);
         }
-        if ($prize->score >= $score) {
+        if ($prize->score > $score) {
             $data = array('status' => 2, 'msg' => '积分不足');
             $this->dataPrint($data);
         }
