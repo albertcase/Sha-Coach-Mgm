@@ -224,10 +224,10 @@ class DatabaseAPI {
 			return FALSE;
 	}
 
-	public function scorePlus($uid, $score) {
+	public function scorePlus($uid, $score, $max = 0) {
 		$sql = "UPDATE `user` SET `score` = `score` + ?, `maxscore` = `maxscore` + ? where uid= ?"; 
 		$res = $this->connect()->prepare($sql); 
-		$res->bind_param("sss", $score, abs($score),  $uid);
+		$res->bind_param("sss", $score,  $max, $uid);
 		if($res->execute()) 
 			return TRUE;
 		else 
