@@ -56,6 +56,9 @@
 
         canvas.width = cWidth;
         canvas.height = cHeight;
+        ctx.rect(0, 0, cWidth, cHeight);
+        ctx.fillStyle = "#fff";
+        ctx.fill();
         //the qrcode image is 210*210
 
         loadImages(sources, function(images) {
@@ -67,13 +70,14 @@
             //    add custom text to canvas
             var fsize = parseInt(22 * cWidth / 750) + 'px',
                 fLeft = parseInt(460 * cWidth / 750);
+            ctx.fillStyle = "#000";
             ctx.font = fsize+' serif';
             ctx.textAlign = 'end';
             ctx.fillText('召集蜜友来助力，扫描积分赢人气',fLeft, img1Height+15);
             ctx.fillText('Coach多重惊喜正在前方召唤',fLeft, img1Height+30);
 
             //    export canvas to one image by dataurl
-            var dataURL = canvas.toDataURL('image/jpg', 1.0);
+            var dataURL = canvas.toDataURL('image/png', 1.0);
             $('#result-img').attr('src',dataURL);
             $('.ajaxpop').remove();
         });
