@@ -338,11 +338,35 @@ Api = {
 
     },
 
-    //check if available
-    isCheck:function(obj,callback){
+    //check if user can exchange
+    isCheck:function(callback){
         Common.msgBox('loading...');
         $.ajax({
             url:'/api/check',
+            type:'POST',
+            dataType:'json',
+            success:function(data){
+                $('.ajaxpop').remove();
+                return callback(data);
+                //status=1 有库存
+            }
+        });
+
+        //return callback({
+        //    status:1,
+        //    avatar:'/src/images/qr-1.png',
+        //    score:'100'
+        //})
+
+
+    },
+
+    //check if product is available
+    //obj is id
+    isAvaliable:function(obj,callback){
+        Common.msgBox('loading...');
+        $.ajax({
+            url:'/api/exchange',
             type:'POST',
             dataType:'json',
             data:obj,
@@ -419,15 +443,24 @@ Api = {
 
         //exchange the product
         $('.product-lists').on('touchstart', '.btn-buy', function(){
-            Api.isCheck({
-              id:$(this).attr('pid')
-            },function(data){
-                console.log(data);
+            //check if the user has chance
+            var id = $(this).attr('pid');
+            Api.isCheck(function(data){
                 if(data.status==1){
                     //do something
+                    Api.isAvaliable({
+                        id:id
+                    },function(result){
+                        console.log(result);
+                        if(result.status==1){
+                        //    可以兑换
 
+                        }else{
+                            Common.alertBox.add(result.msg);
+                        }
+                    });
                 }else{
-                    Common.alertBox.add(data.msg);
+                    Common.alertBox.add('你已经成功完成两次兑换任务');
                 }
 
             });

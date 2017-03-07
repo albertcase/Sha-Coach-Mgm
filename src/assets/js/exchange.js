@@ -29,15 +29,24 @@
 
         //exchange the product
         $('.product-lists').on('touchstart', '.btn-buy', function(){
-            Api.isCheck({
-              id:$(this).attr('pid')
-            },function(data){
-                console.log(data);
+            //check if the user has chance
+            var id = $(this).attr('pid');
+            Api.isCheck(function(data){
                 if(data.status==1){
                     //do something
+                    Api.isAvaliable({
+                        id:id
+                    },function(result){
+                        console.log(result);
+                        if(result.status==1){
+                        //    可以兑换
 
+                        }else{
+                            Common.alertBox.add(result.msg);
+                        }
+                    });
                 }else{
-                    Common.alertBox.add(data.msg);
+                    Common.alertBox.add('你已经成功完成两次兑换任务');
                 }
 
             });
