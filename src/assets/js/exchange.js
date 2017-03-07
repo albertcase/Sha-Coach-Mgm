@@ -91,18 +91,23 @@
             var imgAvatar = data.msg.headimgurl,
                 score = data.msg.score;
             var scoreProgress =0;
+            score = 5000;
             if(score>100 && score<5000){
                 //    star num is 1
                 scoreProgress = '33.3%';
+                $('.p1-t1').html('再接再励，召集蜜友来助力');
             } else if(score>=5000 && score<10000){
                 //    star num is 2
                 scoreProgress = '66.6%';
+                $('.p1-t1').html('下一位超人气天后就是你');
             }else if(score>=10000){
                 //    star num is 3
                 scoreProgress = '100%';
+                $('.p1-t1').html('积分爆表，缤纷好礼都归你');
             }else{
                 //    star num is 0
                 scoreProgress = '0';
+                $('.p1-t1').html('行动起来，姐妹淘都在等你的邀请');
             }
             $('.avatar img').attr('src',imgAvatar);
             $('.stars .progress').css('width',scoreProgress);

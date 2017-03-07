@@ -13,21 +13,24 @@
   margin: 0.3rem auto;
   text-align: left;
   .avatar{
-    display: inline-block;
+    //display: inline-block;
     @include size(0.75rem,0.75rem);
+    margin: 0 auto 0.4rem;
   }
   .stars{
-    position: absolute;
-    left: 0.8rem;
-    top: 50%;
-    margin-top: -0.13rem;
-    display: inline-block;
+    //position: absolute;
+    //left: 0.8rem;
+    //top: 50%;
+    //margin-top: -0.13rem;
+    //display: inline-block;
     @include size(1.08rem,0.26rem);
+    margin: 0 auto;
     background-image: url("../../images/star.png");
     background-repeat: repeat-x;
     background-color: #d1d1d1;
     background-size: auto 0.26rem;
     .progress{
+      width: 0px;
       display: block;
       height: 0.26rem;
       background-image: url("../../images/star.png");

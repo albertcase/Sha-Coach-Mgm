@@ -1159,24 +1159,21 @@ html, body {
   text-align: left;
 }
 .userinfo-block .avatar {
-  display: inline-block;
   width: 0.75rem;
   height: 0.75rem;
+  margin: 0 auto 0.4rem;
 }
 .userinfo-block .stars {
-  position: absolute;
-  left: 0.8rem;
-  top: 50%;
-  margin-top: -0.13rem;
-  display: inline-block;
   width: 1.08rem;
   height: 0.26rem;
+  margin: 0 auto;
   background-image: url("../../images/star.png");
   background-repeat: repeat-x;
   background-color: #d1d1d1;
   background-size: auto 0.26rem;
 }
 .userinfo-block .stars .progress {
+  width: 0px;
   display: block;
   height: 0.26rem;
   background-image: url("../../images/star.png");
