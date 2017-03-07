@@ -72,12 +72,13 @@ class ApiController extends Controller {
 
         global $user;
 
-        $request = $this->request;
-        $fields = array(
-            'id' => array('notnull', '120'),
-        );
-        $request->validation($fields);
-        $id = $request->request->get('id');
+        // $request = $this->request;
+        // $fields = array(
+        //     'id' => array('notnull', '120'),
+        // );
+        // $request->validation($fields);
+        // $id = $request->request->get('id');
+        $id = 1;
 
         $DatabaseAPI = new \Lib\DatabaseAPI();
         $score = $DatabaseAPI->getScore($user->uid);
