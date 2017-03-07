@@ -68,6 +68,14 @@ class ApiController extends Controller {
     	
     }
 
+    public function prizelistAction() {
+        $DatabaseAPI = new \Lib\DatabaseAPI();
+        $list = $DatabaseAPI->prizeList();
+        $data = array('status' => 1, 'msg' => $list);
+        $this->dataPrint($data);
+        
+    }
+
     public function exchangeAction() {
 
         global $user;

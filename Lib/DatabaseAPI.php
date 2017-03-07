@@ -287,6 +287,17 @@ class DatabaseAPI {
 		return 0;
 	}
 
+	public function prizeList() {
+		$sql="SELECT `id`, `name`, `image`, `quota`, `score` FROM `prize`";
+		$res = $this->connect()->query($sql);
+		$data = array();
+		while($rows = $res->fetch_array(MYSQLI_ASSOC))
+		{
+			$data[] = $rows;
+		}		
+		return $data;
+	}
+
 	public function exchange($uid, $pid, $pname, $score){
 		$nowtime = NOWTIME;
 		$sql = "INSERT INTO `exchange` SET `uid` = ?, `prize` = ?, `prizename` = ?, `score` = ?"; 
