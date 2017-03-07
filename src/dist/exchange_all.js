@@ -315,6 +315,53 @@ Api = {
 
     },
 
+    //get prize list
+    prizeList:function(callback){
+        Common.msgBox('loading...');
+        $.ajax({
+            url:'/api/prizelist',
+            type:'POST',
+            dataType:'json',
+            success:function(data){
+                $('.ajaxpop').remove();
+                return callback(data);
+                //status=1 有库存
+            }
+        });
+
+        //return callback({
+        //    status:1,
+        //    avatar:'/src/images/qr-1.png',
+        //    score:'100'
+        //})
+
+
+    },
+
+    //check if available
+    isCheck:function(obj,callback){
+        Common.msgBox('loading...');
+        $.ajax({
+            url:'/api/check',
+            type:'POST',
+            dataType:'json',
+            data:obj,
+            success:function(data){
+                $('.ajaxpop').remove();
+                return callback(data);
+                //status=1 有库存
+            }
+        });
+
+        //return callback({
+        //    status:1,
+        //    avatar:'/src/images/qr-1.png',
+        //    score:'100'
+        //})
+
+
+    },
+
     //提交用户表单信息
     submitUserForm:function(obj,callback){
         Common.msgBox('loading...');
@@ -369,6 +416,15 @@ Api = {
     //bind Events
     controller.prototype.bindEvent = function(){
         var self = this;
+
+        //exchange the product
+        $('.product-lists').on('touchstart', '.btn-buy', function(){
+            Api.isCheck({
+              id:1
+            },function(data){
+                console.log(data);
+            });
+        });
 
         //show contact form
         $('.show-personal span').on('touchstart',function(){
@@ -430,6 +486,16 @@ Api = {
                 $('#input-address').val(info.address);
             }
 
+        });
+
+        //get all prize list
+        Api.prizeList(function(data){
+            console.log(data);
+            if(data.status==1){
+
+            }else{
+                Common.alertBox.add(data.msg);
+            }
         });
     };
 

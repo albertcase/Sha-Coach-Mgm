@@ -27,6 +27,15 @@
     controller.prototype.bindEvent = function(){
         var self = this;
 
+        //exchange the product
+        $('.product-lists').on('touchstart', '.btn-buy', function(){
+            Api.isCheck({
+              id:1
+            },function(data){
+                console.log(data);
+            });
+        });
+
         //show contact form
         $('.show-personal span').on('touchstart',function(){
             //fill the form
@@ -87,6 +96,16 @@
                 $('#input-address').val(info.address);
             }
 
+        });
+
+        //get all prize list
+        Api.prizeList(function(data){
+            console.log(data);
+            if(data.status==1){
+
+            }else{
+                Common.alertBox.add(data.msg);
+            }
         });
     };
 
