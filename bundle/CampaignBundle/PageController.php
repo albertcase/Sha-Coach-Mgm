@@ -118,6 +118,10 @@ class PageController extends Controller {
 		$this->render('qrcode',array('qrcode'=>"getimg?id=".$id));
 	}
 
+	public function exchangeAction() {
+		$this->render('exchange');
+	}
+
 	public function replyAction() {
 		$data = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : $_GET['data'];
 		if (!$data) {
