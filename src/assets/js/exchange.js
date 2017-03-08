@@ -2,6 +2,7 @@
  * Inclue two function, one is load new qr for each person, another is show rule popup
  * */
 ;(function(){
+    isScroll = true;
     var controller = function(){
         this.hasInfo = false;
     };
