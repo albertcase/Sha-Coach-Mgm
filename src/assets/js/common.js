@@ -224,7 +224,6 @@ var noBounce = function() {
 		}
 
 		var element = settings.element || document;
-		console.log(element);
 
 		element.addEventListener("touchstart", handleTouchStart);
 		element.addEventListener("touchmove", handleTouchMove);
