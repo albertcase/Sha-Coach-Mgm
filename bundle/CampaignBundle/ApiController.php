@@ -120,4 +120,12 @@ class ApiController extends Controller {
         
     }
 
+    public function cardAction() {
+        global $user;
+
+        $wechatapi = new \Lib\WechatAPI();
+        $list = $wechatapi->cardList('');
+        return $this->statusPrint(1, $list);
+    }
+
 }
