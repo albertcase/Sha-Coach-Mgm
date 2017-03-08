@@ -31,24 +31,41 @@
         $('.product-lists').on('touchstart', '.btn-buy', function(){
             //check if the user has chance
             var id = $(this).attr('pid');
+            //console.log(id);
+            console.log($(this).parent().find('.p-img').html());
+            var productObj = {
+                id:id,
+                img:$(this).parent().find('.p-img').html(),
+                title:$(this).parent().find('.p-title').html(),
+                price:$(this).parent().find('.p-price').find('.num').html(),
+                number:$(this).parent().find('.p-number').find('.num').html()
+            };
             Api.isCheck(function(data){
                 if(data.status==1){
-                    //do something
-                    Api.isAvaliable({
-                        id:id
-                    },function(result){
-                        console.log(result);
-                        if(result.status==1){
-                        //    可以兑换
-
-                        }else{
-                            Common.alertBox.add(result.msg);
-                        }
-                    });
+                    console.log('show product details');
+                    self.showProductDetails(productObj);
                 }else{
                     Common.alertBox.add('你已经成功完成两次兑换任务');
                 }
 
+            });
+        });
+
+        //exchange the product
+        $('#product-details-page').on('touchstart', '.btn-buy', function(){
+            //check if the user has chance
+            //do something
+            var id = $(this).attr('pid');
+            Api.isAvaliable({
+                id:id
+            },function(result){
+                console.log(result);
+                if(result.status==1){
+                    //    可以兑换
+                    console.log('可以兑换');
+                }else{
+                    Common.alertBox.add(result.msg);
+                }
             });
         });
 
@@ -146,10 +163,10 @@
                             '<div class="p-title">'+data.msg[i].name+
                             '</div>'+
                             '<div class="p-price">'+
-                            '需要'+data.msg[i].score+'积分'+
+                            '需要<span class="num">'+data.msg[i].score+'</span>积分'+
                             '</div>'+
                             '<div class="p-number">'+
-                            '剩余'+data.msg[i].quota+'件'+
+                            '剩余<span class="num">'+data.msg[i].quota+'</span>件'+
                             '</div>'+
                             '<div class="btn btn-buy" pid="'+data.msg[i].id+'">'+
                             '兑 换'+
@@ -205,6 +222,31 @@
             return true;
         }
         return false;
+    };
+
+    //product details
+    controller.prototype.showProductDetails = function(obj){
+        var self = this;
+        //update html
+        //obj include img, title, price, number
+        Common.gotoPin(2);
+        var pwHtml = '<div class="product-wrapper">'+
+            '<div class="p-img">'+obj.img+
+            '</div>'+
+            '<div class="p-title">'+obj.title+
+            '</div>'+
+            '</div>'+
+            '<div class="p-price">'+
+            '兑换需要'+obj.price+'积分'+
+            '</div>'+
+            '<div class="p-number">'+
+            '抓紧了，此宝贝仅剩余'+obj.number+'件'+
+            '</div>'+
+            '<div class="btn btn-buy" pid="'+obj.id+'">'+
+            '确认兑换'+
+            '</div>';
+
+        $('.pw').html(pwHtml);
     };
 
 
