@@ -92,3 +92,27 @@
 .error{
   color: red;
 }
+
+//for product-details-page
+#product-details-page{
+  z-index: 3;
+  background: #fff;
+  text-align: center;
+  font-size: 0.28rem;
+  .total-score{
+    font-size: 0.32rem;
+    margin-bottom: 0.6rem;
+  }
+  .product-wrapper{
+    background: #f0f0f0;
+    padding: 0.4rem 0 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+  .p-img{
+    width: 3.28rem;
+    margin: 0 auto 0.5rem;
+  }
+  .p-number{
+    margin-bottom: 0.9rem;
+  }
+}

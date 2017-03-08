@@ -338,11 +338,35 @@ Api = {
 
     },
 
-    //check if available
-    isCheck:function(obj,callback){
+    //check if user can exchange
+    isCheck:function(callback){
         Common.msgBox('loading...');
         $.ajax({
             url:'/api/check',
+            type:'POST',
+            dataType:'json',
+            success:function(data){
+                $('.ajaxpop').remove();
+                return callback(data);
+                //status=1 有库存
+            }
+        });
+
+        //return callback({
+        //    status:1,
+        //    avatar:'/src/images/qr-1.png',
+        //    score:'100'
+        //})
+
+
+    },
+
+    //check if product is available
+    //obj is id
+    isAvaliable:function(obj,callback){
+        Common.msgBox('loading...');
+        $.ajax({
+            url:'/api/exchange',
             type:'POST',
             dataType:'json',
             data:obj,
@@ -419,17 +443,40 @@ Api = {
 
         //exchange the product
         $('.product-lists').on('touchstart', '.btn-buy', function(){
-            Api.isCheck({
-              id:1
-            },function(data){
-                console.log(data);
+            //check if the user has chance
+            var id = $(this).attr('pid');
+            var productObj = {
+                id:id,
+                img:$(this).parent().find('.p-img').html(),
+                title:$(this).parent().find('.p-title').html(),
+                price:$(this).parent().find('.p-price').find('.num').html(),
+                number:$(this).parent().find('.p-number').find('.num').html()
+            };
+            Api.isCheck(function(data){
                 if(data.status==1){
-                    //do something
-
+                    self.showProductDetails(productObj);
                 }else{
-                    Common.alertBox.add(data.msg);
+                    Common.alertBox.add('你已经成功完成两次兑换任务');
                 }
 
+            });
+        });
+
+        //exchange the product
+        $('#product-details-page').on('touchstart', '.btn-buy', function(){
+            //check if the user has chance
+            //do something
+            var id = $(this).attr('pid');
+            Api.isAvaliable({
+                id:id
+            },function(result){
+                console.log(result);
+                if(result.status==1){
+                    //    可以兑换
+                    console.log('可以兑换');
+                }else{
+                    Common.alertBox.add(result.msg);
+                }
             });
         });
 
@@ -479,18 +526,18 @@ Api = {
         var self = this;
         Api.isLogin(function(data){
             var imgAvatar = data.msg.headimgurl,
-                score = data.msg.score;
+                score = data.msg.score,
+                maxscore = data.msg.maxscore;
             var scoreProgress =0;
-            score = 5000;
-            if(score>100 && score<5000){
+            if(maxscore>100 && maxscore<5000){
                 //    star num is 1
                 scoreProgress = '33.3%';
                 $('.p1-t1').html('再接再励，召集蜜友来助力');
-            } else if(score>=5000 && score<10000){
+            } else if(maxscore>=5000 && maxscore<10000){
                 //    star num is 2
                 scoreProgress = '66.6%';
                 $('.p1-t1').html('下一位超人气天后就是你');
-            }else if(score>=10000){
+            }else if(maxscore>=10000){
                 //    star num is 3
                 scoreProgress = '100%';
                 $('.p1-t1').html('积分爆表，缤纷好礼都归你');
@@ -520,8 +567,24 @@ Api = {
                 if(data.msg.length>0){
                     var pList = '';
                     for(var i=0;i<data.msg.length;i++){
-                        pList = pList + '';
+                        pList = pList + '<li class="item">'+
+                            '<div class="p-img">'+
+                            '<img src="'+data.msg[i].image+'" alt=""/>'+
+                            '</div>'+
+                            '<div class="p-title">'+data.msg[i].name+
+                            '</div>'+
+                            '<div class="p-price">'+
+                            '需要<span class="num">'+data.msg[i].score+'</span>积分'+
+                            '</div>'+
+                            '<div class="p-number">'+
+                            '剩余<span class="num">'+data.msg[i].quota+'</span>件'+
+                            '</div>'+
+                            '<div class="btn btn-buy" pid="'+data.msg[i].id+'">'+
+                            '兑 换'+
+                            '</div>'+
+                            '</li>';
                     };
+                    $('#prize-lists').html(pList);
                 }else{
                     Common.alertBox.add('暂时没有奖品');
                 }
@@ -570,6 +633,31 @@ Api = {
             return true;
         }
         return false;
+    };
+
+    //product details
+    controller.prototype.showProductDetails = function(obj){
+        var self = this;
+        //update html
+        //obj include img, title, price, number
+        Common.gotoPin(2);
+        var pwHtml = '<div class="product-wrapper">'+
+            '<div class="p-img">'+obj.img+
+            '</div>'+
+            '<div class="p-title">'+obj.title+
+            '</div>'+
+            '</div>'+
+            '<div class="p-price">'+
+            '兑换需要'+obj.price+'积分'+
+            '</div>'+
+            '<div class="p-number">'+
+            '抓紧了，此宝贝仅剩余'+obj.number+'件'+
+            '</div>'+
+            '<div class="btn btn-buy" pid="'+obj.id+'">'+
+            '确认兑换'+
+            '</div>';
+
+        $('.pw').html(pwHtml);
     };
 
 
