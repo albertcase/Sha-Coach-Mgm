@@ -112,8 +112,8 @@ class ApiController extends Controller {
 
         $DatabaseAPI->exchange($user->uid, $id, $prize->name, $prize->score);
         $DatabaseAPI->minusQuota($id);
-        $DatabaseAPI->scorePlus($user->uid, -$prize->$score, 0);
-        $DatabaseAPI->scoreLog(0, $user->uid, -$prize->$score, '积分兑换');
+        $DatabaseAPI->scorePlus($user->uid, -$prize->score, 0);
+        $DatabaseAPI->scoreLog(0, $user->uid, -$prize->score, '积分兑换');
         $data = array('status' => 1, 'msg' => '兑换成功');
         $this->dataPrint($data);
         
