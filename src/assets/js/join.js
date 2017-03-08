@@ -7,10 +7,12 @@
         //show rule popup
         $('.link-rule').on('touchstart', function(){
             $('.pop-rules').addClass('show');
+            isScroll = true;
         });
         //close
         $('body').on('touchstart', '.btn-close',function(){
             $(this).parent().parent('.pop-rules').removeClass('show');
+            isScroll = false;
         });
 
         //preload all images
