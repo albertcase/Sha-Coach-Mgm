@@ -37,6 +37,7 @@
             bag1: '/src/images/bag-1.jpg',
             bag2: '/src/images/bag-2.jpg',
             bag3: '/src/images/bag-3.jpg',
+            smalllogo: '/src/images/small-logo.png',
             qr:$('#img2').attr('src')
         };
 
@@ -52,7 +53,9 @@
             img1Width = cWidth,
             img1Height = parseInt(cWidth * 610 / 750),
             img2Width = 210 * cWidth / 750,
-            img2Left = 480 * cWidth / 750;
+            img3Width = 55 * cWidth / 750,
+            img2Left = 480 * cWidth / 750,
+            img3Left = 480 * cWidth / 750 + (img2Width - img3Width) / 2;
 
         canvas.width = cWidth;
         canvas.height = cHeight;
@@ -62,10 +65,13 @@
         //the qrcode image is 210*210
 
         loadImages(sources, function(images) {
-            var image1 = new Image();
+            var image1 = new Image(),
+                image3 = new Image();
             image1.src = '/src/images/bag-'+Math.round(Math.random() * (3 - 1) + 1)+'.jpg';
+            image3.src = sources.smalllogo;
             ctx.drawImage(image1, 0,0,img1Width,img1Height);
             ctx.drawImage(image2, img2Left,img1Height-img2Width/2,img2Width,img2Width);
+            ctx.drawImage(image3, img3Left,img1Height-img3Width/2,img3Width,img3Width);
 
             //    add custom text to canvas
             var fsize = parseInt(22 * cWidth / 750) + 'px',
