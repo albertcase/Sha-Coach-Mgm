@@ -7,10 +7,7 @@ class PageController extends Controller {
 
 	public function indexAction() {
 		
-		// global $user;
-		// echo file_get_contents('http://uat.coach.samesamechina.com/api/coach/create_tmp_qr/'.$user->openid.'?access_token='.TOKEN);
-
-		exit;
+		$this->render('index');
 	}
 
 	public function imageAction() {
