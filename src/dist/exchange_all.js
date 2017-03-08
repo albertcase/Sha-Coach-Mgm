@@ -442,7 +442,7 @@ Api = {
         var self = this;
 
         //exchange the product
-        $('.product-lists').on('touchstart', '.btn-buy', function(){
+        $('.product-lists').on('click', '.btn-buy', function(){
             //check if the user has chance
             var id = $(this).attr('pid');
             var productObj = {
