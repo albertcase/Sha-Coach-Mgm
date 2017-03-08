@@ -310,4 +310,14 @@ class DatabaseAPI {
 			return FALSE;
 	}
 
+	public function minusQuota($id) {
+		$sql = "UPDATE `prize` SET `quota` = `quota` -1 where id= ?"; 
+		$res = $this->connect()->prepare($sql); 
+		$res->bind_param("s", $id);
+		if($res->execute()) 
+			return TRUE;
+		else 
+			return FALSE;
+	}
+
 }
