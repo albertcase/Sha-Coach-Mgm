@@ -22,4 +22,5 @@ $routers['/getimg'] = array('CampaignBundle\Page', 'image');
 $routers['/api/check'] = array('CampaignBundle\Api', 'check');
 $routers['/api/exchange'] = array('CampaignBundle\Api', 'exchange');
 $routers['/api/prizelist'] = array('CampaignBundle\Api', 'prizelist');
+$routers['/api/card'] = array('CampaignBundle\Api', 'card');
 $routers['/exchange'] = array('CampaignBundle\Page', 'exchange');
