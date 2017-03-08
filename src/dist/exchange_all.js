@@ -417,7 +417,7 @@ Api = {
  * */
 ;(function(){
     var controller = function(){
-
+        this.hasInfo = false;
     };
     //init
     controller.prototype.init = function(){
@@ -473,7 +473,14 @@ Api = {
                 console.log(result);
                 if(result.status==1){
                     //    可以兑换
-                    console.log('可以兑换');
+                    if(self.hasInfo){
+                    //    go list page
+                        Common.gotoPin(0);
+                        Common.alertBox.add('兑换成功');
+                    }else{
+                        //go form to fill
+                        Common.gotoPin(1);
+                    };
                 }else{
                     Common.alertBox.add(result.msg);
                 }
@@ -492,7 +499,7 @@ Api = {
             //
             //    }
             //});
-            location.hash = '#form';
+            //location.hash = '#form';
             //location.search = Common.setParameterByName('page','form');
             Common.gotoPin(1);
         });
@@ -525,37 +532,42 @@ Api = {
     controller.prototype.userInfo = function(){
         var self = this;
         Api.isLogin(function(data){
-            var imgAvatar = data.msg.headimgurl,
-                score = data.msg.score,
-                maxscore = data.msg.maxscore;
-            var scoreProgress =0;
-            if(maxscore>100 && maxscore<5000){
-                //    star num is 1
-                scoreProgress = '33.3%';
-                $('.p1-t1').html('再接再励，召集蜜友来助力');
-            } else if(maxscore>=5000 && maxscore<10000){
-                //    star num is 2
-                scoreProgress = '66.6%';
-                $('.p1-t1').html('下一位超人气天后就是你');
-            }else if(maxscore>=10000){
-                //    star num is 3
-                scoreProgress = '100%';
-                $('.p1-t1').html('积分爆表，缤纷好礼都归你');
-            }else{
-                //    star num is 0
-                scoreProgress = '0';
-                $('.p1-t1').html('行动起来，姐妹淘都在等你的邀请');
-            }
-            $('.avatar img').attr('src',imgAvatar);
-            $('.stars .progress').css('width',scoreProgress);
-            $('.total-score .num').html(score);
+            if(data.status==1){
+                var imgAvatar = data.msg.headimgurl,
+                    score = data.msg.score,
+                    maxscore = data.msg.maxscore;
+                var scoreProgress =0;
+                if(maxscore>100 && maxscore<5000){
+                    //    star num is 1
+                    scoreProgress = '33.3%';
+                    $('.p1-t1').html('再接再励，召集蜜友来助力');
+                } else if(maxscore>=5000 && maxscore<10000){
+                    //    star num is 2
+                    scoreProgress = '66.6%';
+                    $('.p1-t1').html('下一位超人气天后就是你');
+                }else if(maxscore>=10000){
+                    //    star num is 3
+                    scoreProgress = '100%';
+                    $('.p1-t1').html('积分爆表，缤纷好礼都归你');
+                }else{
+                    //    star num is 0
+                    scoreProgress = '0';
+                    $('.p1-t1').html('行动起来，姐妹淘都在等你的邀请');
+                }
+                $('.avatar img').attr('src',imgAvatar);
+                $('.stars .progress').css('width',scoreProgress);
+                $('.total-score .num').html(score);
 
-            var info = data.info;
-            if(info){
-                //    user info
-                $('#input-name').val(info.name);
-                $('#input-mobile').val(info.cellphone);
-                $('#input-address').val(info.address);
+                var info = data.info;
+                if(info){
+                    //    user info
+                    $('#input-name').val(info.name);
+                    $('#input-mobile').val(info.cellphone);
+                    $('#input-address').val(info.address);
+                    self.hasInfo = true;
+                }
+            }else{
+                Common.alertBox.add(data.msg);
             }
 
         });

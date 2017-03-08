@@ -42,7 +42,7 @@
                 <img id="result-img" src="" alt=""/>
             </div>
         </div>
-        <div class="btn btn-exchange"><a href="/template/exchange.html">积分兑换</a></div>
+        <div class="btn btn-exchange"><a href="/exchange">积分兑换</a></div>
         <div class="link-rule">
             <span>活动细则</span>
         </div>
