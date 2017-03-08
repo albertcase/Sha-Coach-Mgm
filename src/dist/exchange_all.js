@@ -445,8 +445,6 @@ Api = {
         $('.product-lists').on('touchstart', '.btn-buy', function(){
             //check if the user has chance
             var id = $(this).attr('pid');
-            //console.log(id);
-            console.log($(this).parent().find('.p-img').html());
             var productObj = {
                 id:id,
                 img:$(this).parent().find('.p-img').html(),
@@ -456,7 +454,6 @@ Api = {
             };
             Api.isCheck(function(data){
                 if(data.status==1){
-                    console.log('show product details');
                     self.showProductDetails(productObj);
                 }else{
                     Common.alertBox.add('你已经成功完成两次兑换任务');
