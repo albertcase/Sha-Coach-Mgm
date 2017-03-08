@@ -37,7 +37,7 @@ define("SCOPE", 'snsapi_base');
 //Wechat Authorize Page
 define("AUTHORIZE_URL", '[
 	"/",
-	"exchange"
+	"/exchange"
 ]');
 
 //Account Access
