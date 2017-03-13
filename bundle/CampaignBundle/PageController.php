@@ -120,7 +120,8 @@ class PageController extends Controller {
 	}
 
 	public function replyAction() {
-		$data = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : $_GET['data'];
+		//$data = isset($GLOBALS['HTTP_RAW_POST_DATA']) ? $GLOBALS['HTTP_RAW_POST_DATA'] : $_GET['data'];
+		$data = file_get_contents('php://input'); 
 		if (!$data) {
 			$data = array('status' => 'failed');
 		    $this->dataPrint($data);
