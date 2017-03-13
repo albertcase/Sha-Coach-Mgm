@@ -143,12 +143,10 @@ class PageController extends Controller {
 				}
 				//未绑定
 				$user2 = $DatabaseAPI->findUserByOpenid($info->scene_str);
-				if (!$user2) {
-					$user2 = new \stdClass();
-					$user2->uid = 0;
-				}
-				$RedisAPI ->setParent($user1->uid, $user2->uid);
-				$RedisAPI ->setSend($user1->uid);
+				if ($user2) {
+					$RedisAPI ->setParent($user1->uid, $user2->uid);
+					$RedisAPI ->setSend($user1->uid);
+				}		
 				$response = array('openid' => $info->openid, 'text' => '<a href="'.BASE_URL.'qrcode?id='.$user1->uid.'">点击获取您的专属二维码</a>');
 				//$RedisAPI->runScript();
 				$data = array('status' => 'success', 'data' => $response);
