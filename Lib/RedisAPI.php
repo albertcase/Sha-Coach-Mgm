@@ -114,7 +114,7 @@ class RedisAPI {
 	}
 
 	public function popSend() {
-		return $this->_redis->lPop('sendList');
+		return $this->_redis->rPop('sendList');
 	}
 
 	public function flush() {
