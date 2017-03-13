@@ -97,6 +97,8 @@ class ApiController extends Controller {
         }
 
         $prize = $DatabaseAPI->getPrizeById($id);
+        var_dump($score);
+        var_dump($prize);exit;
         if (!$prize) {
             $data = array('status' => 5, 'msg' => '非法提交');
             $this->dataPrint($data);
