@@ -144,6 +144,7 @@ class PageController extends Controller {
 				//未绑定
 				$user2 = $DatabaseAPI->findUserByOpenid($info->scene_str);
 				if (!$user2) {
+					$user2 = new \stdClass();
 					$user2->uid = 0;
 				}
 				$RedisAPI ->setParent($user1->uid, $user2->uid);
