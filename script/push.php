@@ -4,7 +4,7 @@ include_once "../config/config.php";
 include_once "../config/router.php";
 
 $RedisAPI = new \Lib\RedisAPI();
-return $RedisAPI->runScript();
+print $RedisAPI->runScript();
 
 
 
