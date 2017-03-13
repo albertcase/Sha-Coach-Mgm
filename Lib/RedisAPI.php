@@ -132,9 +132,9 @@ class RedisAPI {
 		if (!$pid) {
 			return 0;
 		}
-		// if ($pid == 1) {
-		// 	return 0;
-		// }
+		if ($pid == 1) {
+			return 0;
+		}
 		$DatabaseAPI = new \Lib\DatabaseAPI();
 		$user = $DatabaseAPI->findQrcodeByUid($uid);
 		$parent = $DatabaseAPI->findQrcodeByUid($pid);

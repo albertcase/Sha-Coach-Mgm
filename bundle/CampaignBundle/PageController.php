@@ -146,7 +146,10 @@ class PageController extends Controller {
 				if ($user2) {
 					$RedisAPI ->setParent($user1->uid, $user2->uid);
 					$RedisAPI ->setSend($user1->uid);
-				}		
+				} else {
+					$RedisAPI ->setParent($user1->uid, 1);
+					//$RedisAPI ->setSend($user1->uid);
+				}	
 				$response = array('openid' => $info->openid, 'text' => '<a href="'.BASE_URL.'qrcode?id='.$user1->uid.'">点击获取您的专属二维码</a>');
 				//$RedisAPI->runScript();
 				$data = array('status' => 'success', 'data' => $response);
