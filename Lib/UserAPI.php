@@ -47,11 +47,11 @@ class UserAPI extends Base {
     // $r->openid = 'asf';
     // return $r;
     if(USER_STORAGE == 'COOKIE') {
-      if(isset($_COOKIE['_user'])) {
+      if(isset($_COOKIE['_user0313'])) {
         return json_decode($_COOKIE['_user']);
       }
     } else {
-      if(isset($_SESSION['_user'])) {
+      if(isset($_SESSION['_user0313'])) {
         return json_decode($_SESSION['_user']);
       }
     }
@@ -60,9 +60,9 @@ class UserAPI extends Base {
 
   public function userLoginFinalize($user) {
     if(USER_STORAGE == 'COOKIE') {
-      setcookie('_user', json_encode($user), time() + 3600 * 24 * 100, '/');
+      setcookie('_user0313', json_encode($user), time() + 3600 * 24 * 100, '/');
     } else {
-      $_SESSION['_user'] = json_encode($user);
+      $_SESSION['_user0313'] = json_encode($user);
     }
     return $user;
   }
