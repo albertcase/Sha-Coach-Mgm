@@ -48,11 +48,11 @@ class UserAPI extends Base {
     // return $r;
     if(USER_STORAGE == 'COOKIE') {
       if(isset($_COOKIE['_user0313'])) {
-        return json_decode($_COOKIE['_user']);
+        return json_decode($_COOKIE['_user0313']);
       }
     } else {
       if(isset($_SESSION['_user0313'])) {
-        return json_decode($_SESSION['_user']);
+        return json_decode($_SESSION['_user0313']);
       }
     }
     return FALSE;
