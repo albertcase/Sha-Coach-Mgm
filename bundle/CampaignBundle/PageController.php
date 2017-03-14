@@ -41,54 +41,51 @@ class PageController extends Controller {
 	}
 
 	public function testAction() {
-		$RedisAPI = new \Lib\RedisAPI();
-		$row = $RedisAPI->runScript();
-		echo $row;exit;
-		
-		// $RedisAPI = new \Lib\RedisAPI();
-		// $uid = $RedisAPI->popSend();
-		// if (!$uid) {
-		// 	echo 0;
-		// 	exit;
-		// }
-		// //给上级加分
-		// $pid = $RedisAPI->getParent($uid);
-		// if (!$pid) {
-		// 	echo 0;
-		// 	exit;
-		// }
-		// if ($pid == 1) {
-		// 	echo 0;
-		// 	exit;
-		// }
-		// $DatabaseAPI = new \Lib\DatabaseAPI();
-		// $user = $DatabaseAPI->findQrcodeByUid($uid);
-		// $parent = $DatabaseAPI->findQrcodeByUid($pid);
-		// $CurioWechatAPI = new \Lib\CurioWechatAPI();
-		// $CurioWechatAPI->sendText($parent->openid, $user->nickname.'通过关注为您获取40积分');
-		// $DatabaseAPI->scorePlus($parent->uid, 40);
-		// $DatabaseAPI->scoreLog($uid, $parent->uid, 40, '关注');
-		// //给上级的上级加分
-		// while ($pid = $RedisAPI->getParent($pid)) {
-		// 	$parents = $DatabaseAPI->findQrcodeByUid($pid);
-		// 	$CurioWechatAPI->sendText($parents->openid, $parent->nickname.'通过下级关注为您获取20积分');
-		// 	$DatabaseAPI->scorePlus($parents->uid, 20);
-		// 	$DatabaseAPI->scoreLog($uid, $parents->uid, 20, '下级关注');
-		// 	$parent = $parents;
-		// }
-		// exit;
-		/*
-		$RedisAPI = new \Lib\RedisAPI();
-		$RedisAPI ->setParent(2,1);
-		$RedisAPI ->setParent(3,2);
-		$RedisAPI ->setParent(4,3);
-		$RedisAPI ->setParent(5,4);
-		$RedisAPI ->setParent(6,5);
-		$RedisAPI ->setParent(7,6);
-		$rs= $RedisAPI ->getAllParent(5);
-		var_dump($rs);
-		echo 1;exit;
-		*/
+		$rand = rand(100000,999999);
+		$data = '{"openid":"'.$rand.'","nickname":"'.$rand.'","headimgurl":"'.$rand.'","scene_str":"oqQW1w-O0LFVBKgR0wuNIcRy6uBk"}'; 
+		if (!$data) {
+			$data = array('status' => 'failed');
+		    $this->dataPrint($data);
+		}	
+		$DatabaseAPI = new \Lib\DatabaseAPI();
+		$info = json_decode($data);
+
+		if($DatabaseAPI->insertReply($data, $info)) {
+			if ($info->openid != $info->scene_str) {
+				$user1 = $DatabaseAPI->findUserByOpenid($info->openid);
+				if (!$user1) {
+					$user1 = $DatabaseAPI->insertUserByQrcode($info->openid, $info->nickname, $info->headimgurl);
+				}
+				$RedisAPI = new \Lib\RedisAPI();
+				if ($RedisAPI->getParent($user1->uid)) {
+					//已绑定
+					$response = array();
+					$data = array('status' => 'success', 'data' => $response);
+					$this->dataPrint($data);
+				}
+				//未绑定
+				$user2 = $DatabaseAPI->findUserByOpenid($info->scene_str);
+				if ($user2) {
+					$RedisAPI ->setParent($user1->uid, $user2->uid);
+					$RedisAPI ->setSend($user1->uid);
+				} else {
+					$RedisAPI ->setParent($user1->uid, 1);
+					//$RedisAPI ->setSend($user1->uid);
+				}	
+				$response = array('openid' => $info->openid, 'text' => '<a href="'.BASE_URL.'qrcode?id='.$user1->uid.'">点击获取您的专属二维码</a>');
+				//$RedisAPI->runScript();
+				$data = array('status' => 'success', 'data' => $response);
+				$this->dataPrint($data);
+			}
+			$response = array();
+			$data = array('status' => 'success', 'data' => $response);
+			$this->dataPrint($data);
+		} else {
+			$response = array();
+			$data = array('status' => 'success', 'data' => $response);
+			$this->dataPrint($data);
+		}
+
 	}
 
 	public function flushredisAction() {
