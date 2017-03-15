@@ -65,21 +65,51 @@
             var id = $(this).attr('pid');
             if(id==1){
             //    card
-                Api.card(function(data){
-                    if(data.status==1){
-                        
+                var i = 1;
+                Api.coupon(function(data){
+                    if(data.status){
+                        var cardListJSON = data.msg;
+                        wx.addCard({
+                            cardList: [{
+                                cardId: cardListJSON[i-1].cardId,
+                                cardExt: '{"timestamp":"'+cardListJSON[i-1].cardExt.timestamp+'","signature":"'+cardListJSON[i-1].cardExt.signature+'"}'
+                            }],
+
+                            success: function(res) {
+                                var cardList = res.cardList;
+                                //alert(JSON.stringfiy(res));
+                            },
+                            fail: function(res) {
+                                //alert(JSON.stringfiy(res));
+                            },
+                            complete: function(res) {
+                                //alert(JSON.stringfiy(res));
+                            },
+                            cancel: function(res) {
+                                //alert(JSON.stringfiy(res));
+                            },
+                            trigger: function(res) {
+                                //alert(JSON.stringfiy(res));
+                            }
+                        });
                     }else{
                         Common.alertBox.add(data.msg);
                     }
+
                 });
+                //Api.card(function(data){
+                //    if(data.status==1){
+                //
+                //    }else{
+                //        Common.alertBox.add(data.msg);
+                //    }
+                //});
                 return;
             };
-
             //else prize
             Api.isAvaliable({
                 id:id
             },function(result){
-                console.log(result);
                 if(result.status==1){
                     //    可以兑换
                     if(self.hasInfo){

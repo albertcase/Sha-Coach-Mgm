@@ -416,7 +416,7 @@ Api = {
     card:function(callback){
         Common.msgBox('loading...');
         $.ajax({
-            url:'/ajax/card',
+            url:'/api/card',
             type:'POST',
             dataType:'json',
             success:function(data){
