@@ -1181,11 +1181,11 @@ img {
   width: 44%;
   display: inline-block;
   margin-left: 4%;
-  margin-top: 0.3rem;
+  margin-top: 0.5rem;
   text-align: center;
 }
 .product-lists .item .p-title {
-  margin: 0.4rem 0;
+  margin: 0.3rem 0;
   font-size: 0.26rem;
 }
 .product-lists .item .btn {

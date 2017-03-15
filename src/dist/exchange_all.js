@@ -519,6 +519,7 @@ Api = {
                     //    go list page
                         Common.gotoPin(0);
                         if(self.enableCopon){
+                            self.enableCopon = false;
                             self.addCoupon();
                         }else{
                             Common.alertBox.add('兑换成功');
@@ -562,12 +563,11 @@ Api = {
                     address:address
                 },function(data){
                     if(data.status==1){
-                        console.log('login success,go page1');
-                        location.hash = '#exchange';
-                        Common.gotoPin(0);
                         if(self.enableCopon){
+                            self.enableCopon = false;
                             self.addCoupon();
                         }
+                        Common.gotoPin(0);
                     }else{
                         Common.alertBox.add(data.msg);
                     }
