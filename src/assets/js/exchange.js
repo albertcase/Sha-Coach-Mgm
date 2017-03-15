@@ -30,6 +30,14 @@
 
         //exchange the product
         $('.product-lists').on('click', '.btn-buy', function(){
+            var curIndex = $(this).parent().index();
+            //if(curIndex == 0){
+            //    //card
+            //
+            //}else{
+            ////    product
+            //
+            //}
             //check if the user has chance
             var id = $(this).attr('pid');
             var productObj = {
@@ -47,6 +55,7 @@
                 }
 
             });
+
         });
 
         //exchange the product
@@ -54,6 +63,19 @@
             //check if the user has chance
             //do something
             var id = $(this).attr('pid');
+            if(id==1){
+            //    card
+                Api.card(function(data){
+                    if(data.status==1){
+                        
+                    }else{
+                        Common.alertBox.add(data.msg);
+                    }
+                });
+                return;
+            };
+
+            //else prize
             Api.isAvaliable({
                 id:id
             },function(result){

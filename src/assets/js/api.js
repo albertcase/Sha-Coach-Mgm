@@ -118,6 +118,28 @@ Api = {
 
     },
 
+    //卡券接口
+    card:function(callback){
+        Common.msgBox('loading...');
+        $.ajax({
+            url:'/ajax/card',
+            type:'POST',
+            dataType:'json',
+            success:function(data){
+                $('.ajaxpop').remove();
+                return callback(data);
+            }
+        });
+
+        //return callback({
+        //    status:1,
+        //    avatar:'/src/images/qr-1.png',
+        //    score:'100'
+        //});
+
+
+    },
+
 
 
 };
