@@ -11,12 +11,13 @@
     controller.prototype.init = function(){
         var self = this;
 
-        if(location.hash=='#form'){
-            Common.gotoPin(1);
-        }else{
-            Common.gotoPin(0);
-        }
+        //if(location.hash=='#form'){
+        //    Common.gotoPin(1);
+        //}else{
+        //    Common.gotoPin(0);
+        //}
 
+        location.hash = '#1';
         //Common.setParameterByName('page','test');
         //load userinfo
         self.userInfo();
@@ -32,13 +33,7 @@
         //exchange the product
         $('.product-lists').on('click', '.btn-buy', function(){
             var curIndex = $(this).parent().index();
-            //if(curIndex == 0){
-            //    //card
-            //
-            //}else{
-            ////    product
-            //
-            //}
+            location.hash = '#2';
             //check if the user has chance
             var id = $(this).attr('pid');
             var productObj = {
@@ -78,12 +73,13 @@
                     //    可以兑换
                     if(self.hasInfo){
                     //    go list page
-                        Common.gotoPin(0);
+                    //    Common.gotoPin(0);
                         if(self.enableCopon){
                             self.enableCopon = false;
                             self.addCoupon();
                         }else{
                             Common.alertBox.add('兑换成功');
+                            //location.reload();
                         }
                     }else{
                         //go form to fill
@@ -158,9 +154,11 @@
                     },
                     complete: function(res) {
                         //alert(JSON.stringfiy(res));
+                        location.reload();
                     },
                     cancel: function(res) {
                         //alert(JSON.stringfiy(res));
+                        location.reload();
                     },
                     trigger: function(res) {
                         //alert(JSON.stringfiy(res));
@@ -322,6 +320,12 @@
 //    show form
         var exchange = new controller();
         exchange.init();
+
+        $('body').on('touchstart','.btn-alert-ok',function(){
+            if($('body').hasClass('page-exchange') && $('#product-details-page').hasClass('current')){
+                location.reload();
+            }
+        });
 
     });
 
