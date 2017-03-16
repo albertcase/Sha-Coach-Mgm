@@ -34,7 +34,7 @@
             领取属于你的个性二维码
         </p>
         <div class="qr">
-            <img src="/src/images/qr-1.jpg" alt="扫描二维码"/>
+            <img src="/src/images/qr-1.png" alt="扫描二维码"/>
         </div>
     </div>
 </div>
