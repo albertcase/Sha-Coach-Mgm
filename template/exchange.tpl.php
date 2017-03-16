@@ -12,7 +12,7 @@
     <script src=" http://uat.coach.samesamechina.com/api/v1/js/e5fc5e16-eae6-4aaa-91c7-66a574fa6c7e/wechat"></script>
     <script src="/src/dist/js/exchange_all.min.js"></script>
 </head>
-<body class="page-home">
+<body class="page-exchange">
 <div class="preload">
     <div class="v-content"></div>
 </div>
