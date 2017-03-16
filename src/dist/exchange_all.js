@@ -594,6 +594,7 @@ Api = {
                     complete: function(res) {
                         //alert(JSON.stringfiy(res));
                         location.reload();
+
                     },
                     cancel: function(res) {
                         //alert(JSON.stringfiy(res));
