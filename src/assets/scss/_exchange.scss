@@ -1,6 +1,6 @@
 //for exchange page
 #pin-exchange{
-  font-size: 0.28rem;
+  font-size: 0.26rem;
   text-align: center;
   padding-bottom: 0.4rem;
   overflow: auto;
@@ -41,11 +41,11 @@
   }
 }
 .p1-t1{
-  margin-top:0.2rem;
+  margin-top:0.1rem;
 }
 .show-personal{
   text-decoration: underline;
-  margin-top:0.2rem;
+  margin-top:0.12rem;
   margin-bottom:0.2rem;
 }
 
@@ -53,18 +53,19 @@
 .product-lists{
   text-align: left;
   .item{
-    width: 41%;
+    width: 44%;
     display: inline-block;
-    margin-left: 6%;
-    margin-top: 0.3rem;
+    margin-left: 4%;
+    margin-top: 0.5rem;
     text-align: center;
     .p-title{
-      margin: 0.4rem 0;
+      margin: 0.3rem 0;
+      font-size: 0.26rem;
     }
     .btn{
-      width: 100%;
-      margin: 0.2rem 0 0;
-      padding: .1rem 0;
+      width: 2rem;
+      margin: 0.2rem auto 0;
+      padding: .05rem 0;
     }
   }
 }

@@ -77,11 +77,10 @@ html {
 }
 
 body {
-  font-family: 'Microsoft Yahei',sans-serif;
+  font-family: PingFangSC-Regular, sans-serif;
   line-height: 1.5;
   font-size: .24rem;
   color: #000;
-  letter-spacing: 2px;
   background: #fff;
 }
 
@@ -249,7 +248,7 @@ img {
 .pop-rules .rule-content {
   color: #515151;
   font-size: 0.28rem;
-  padding: 0.7rem 0.6rem;
+  padding: 0.3rem;
   height: 6rem;
   overflow-x: hidden;
   overflow-y: auto;
@@ -1128,7 +1127,7 @@ img {
 }
 
 #pin-exchange {
-  font-size: 0.28rem;
+  font-size: 0.26rem;
   text-align: center;
   padding-bottom: 0.4rem;
   overflow: auto;
@@ -1166,12 +1165,12 @@ img {
 }
 
 .p1-t1 {
-  margin-top: 0.2rem;
+  margin-top: 0.1rem;
 }
 
 .show-personal {
   text-decoration: underline;
-  margin-top: 0.2rem;
+  margin-top: 0.12rem;
   margin-bottom: 0.2rem;
 }
 
@@ -1179,19 +1178,20 @@ img {
   text-align: left;
 }
 .product-lists .item {
-  width: 41%;
+  width: 44%;
   display: inline-block;
-  margin-left: 6%;
-  margin-top: 0.3rem;
+  margin-left: 4%;
+  margin-top: 0.5rem;
   text-align: center;
 }
 .product-lists .item .p-title {
-  margin: 0.4rem 0;
+  margin: 0.3rem 0;
+  font-size: 0.26rem;
 }
 .product-lists .item .btn {
-  width: 100%;
-  margin: 0.2rem 0 0;
-  padding: .1rem 0;
+  width: 2rem;
+  margin: 0.2rem auto 0;
+  padding: .05rem 0;
 }
 
 #form-contact .title {

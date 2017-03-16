@@ -412,6 +412,28 @@ Api = {
 
     },
 
+    //卡券接口
+    coupon:function(callback){
+        Common.msgBox('loading...');
+        $.ajax({
+            url:'/api/card',
+            type:'POST',
+            dataType:'json',
+            success:function(data){
+                $('.ajaxpop').remove();
+                return callback(data);
+            }
+        });
+
+        //return callback({
+        //    status:1,
+        //    avatar:'/src/images/qr-1.png',
+        //    score:'100'
+        //});
+
+
+    },
+
 
 
 };
@@ -422,6 +444,7 @@ Api = {
     isScroll = true;
     var controller = function(){
         this.hasInfo = false;
+        this.enableCopon = false;
     };
     //init
     controller.prototype.init = function(){
@@ -447,6 +470,14 @@ Api = {
 
         //exchange the product
         $('.product-lists').on('click', '.btn-buy', function(){
+            var curIndex = $(this).parent().index();
+            //if(curIndex == 0){
+            //    //card
+            //
+            //}else{
+            ////    product
+            //
+            //}
             //check if the user has chance
             var id = $(this).attr('pid');
             var productObj = {
@@ -464,6 +495,7 @@ Api = {
                 }
 
             });
+
         });
 
         //exchange the product
@@ -471,16 +503,27 @@ Api = {
             //check if the user has chance
             //do something
             var id = $(this).attr('pid');
+            if(id==1){
+            //    coupon
+                self.enableCopon = true;
+            }else{
+                self.enableCopon = false;
+            };
+            //else prize
             Api.isAvaliable({
                 id:id
             },function(result){
-                console.log(result);
                 if(result.status==1){
                     //    可以兑换
                     if(self.hasInfo){
                     //    go list page
                         Common.gotoPin(0);
-                        Common.alertBox.add('兑换成功');
+                        if(self.enableCopon){
+                            self.enableCopon = false;
+                            self.addCoupon();
+                        }else{
+                            Common.alertBox.add('兑换成功');
+                        }
                     }else{
                         //go form to fill
                         Common.gotoPin(1);
@@ -520,8 +563,10 @@ Api = {
                     address:address
                 },function(data){
                     if(data.status==1){
-                        console.log('login success,go page1');
-                        location.hash = '#exchange';
+                        if(self.enableCopon){
+                            self.enableCopon = false;
+                            self.addCoupon();
+                        }
                         Common.gotoPin(0);
                     }else{
                         Common.alertBox.add(data.msg);
@@ -530,6 +575,41 @@ Api = {
             }
         });
 
+    };
+
+    controller.prototype.addCoupon = function(){
+        var i = 1;
+        Api.coupon(function(data){
+            if(data.status){
+                var cardListJSON = data.msg;
+                wx.addCard({
+                    cardList: [{
+                        cardId: cardListJSON[i-1].cardId,
+                        cardExt: '{"timestamp":"'+cardListJSON[i-1].cardExt.timestamp+'","signature":"'+cardListJSON[i-1].cardExt.signature+'"}'
+                    }],
+
+                    success: function(res) {
+                        var cardList = res.cardList;
+                        //alert(JSON.stringfiy(res));
+                    },
+                    fail: function(res) {
+                        //alert(JSON.stringfiy(res));
+                    },
+                    complete: function(res) {
+                        //alert(JSON.stringfiy(res));
+                    },
+                    cancel: function(res) {
+                        //alert(JSON.stringfiy(res));
+                    },
+                    trigger: function(res) {
+                        //alert(JSON.stringfiy(res));
+                    }
+                });
+            }else{
+                Common.alertBox.add(data.msg);
+            }
+
+        });
     };
 
     //load user info and fill it
