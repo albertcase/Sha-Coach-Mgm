@@ -8,12 +8,7 @@
     <meta name="x5-fullscreen" content="true">
     <meta name="full-screen" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" type="text/css" href="/src/dist/css/style.css" />
-    <!--<script src="/src/assets/js/lib/zepto.min.js"></script>-->
-    <!--<script src="/src/assets/js/rem.js"></script>-->
-    <!--<script src="/src/assets/js/common.js"></script>-->
-    <!--<script src="/src/assets/js/api.js"></script>-->
-    <!--<script src="/src/assets/js/exchange.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="/src/dist/css/style.css?v=1" />
     <script src=" http://uat.coach.samesamechina.com/api/v1/js/e5fc5e16-eae6-4aaa-91c7-66a574fa6c7e/wechat"></script>
     <script src="/src/dist/js/exchange_all.min.js"></script>
 </head>
