@@ -27,9 +27,22 @@ class PageController extends Controller {
 		}
 		$result = file_get_contents('http://uat.coach.samesamechina.com/api/coach/create_tmp_qr/'.$user->openid.'?access_token='.TOKEN);
 		$result = json_decode($result);
-		$DatabaseAPI->saveImage($user->uid, $result->img_src);
+		$image = file_get_contents($result->img_src);
+		$filename = date('His') . rand(100,999) . '.png';
+		$folder = 'upload/img/'.date("Ymd").'/';
+		if(!is_dir($folder)){        	
+			if(!mkdir($folder, 0777, true))	
+			{	
+				return 5;
+			}
+			chmod($folder,0777);
+		}
+		$handle = fopen($folder.$filename, 'w');
+		fwrite($handle, $image);
+		fclose($handle);
+		$DatabaseAPI->saveImage($user->uid, $folder.$filename);
 		header('Content-type: image/jpg');
-		echo file_get_contents($result->img_src);;
+		echo file_get_contents($folder.$filename);;
 		exit;
 	}
 
