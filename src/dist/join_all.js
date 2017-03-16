@@ -413,7 +413,7 @@ Api = {
     },
 
     //卡券接口
-    card:function(callback){
+    coupon:function(callback){
         Common.msgBox('loading...');
         $.ajax({
             url:'/api/card',
