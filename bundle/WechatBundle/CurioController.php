@@ -16,7 +16,7 @@ class CurioController extends Controller {
 		if(!$user) {
 			$userAPI->userRegister($request->query->get('openid'));
 		}
-		$url = '';
+		$url = isset($_COOKIE['redirect_url']) ? $_COOKIE['redirect_url'] : "/exchange";
 		$this->redirect($url);
 	}
 
