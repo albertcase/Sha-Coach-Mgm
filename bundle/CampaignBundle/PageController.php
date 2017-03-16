@@ -179,7 +179,7 @@ class PageController extends Controller {
 
 	public function clearCookieAction() {
 		global $user;
-		setcookie('_user', json_encode($user), time(), '/');
+		setcookie('_user0316', json_encode($user), time(), '/');
 		$this->statusPrint('success');
 	}
 
