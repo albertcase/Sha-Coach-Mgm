@@ -450,12 +450,6 @@ Api = {
     controller.prototype.init = function(){
         var self = this;
 
-        //if(location.hash=='#form'){
-        //    Common.gotoPin(1);
-        //}else{
-        //    Common.gotoPin(0);
-        //}
-
         location.hash = '#1';
         //Common.setParameterByName('page','test');
         //load userinfo
@@ -594,7 +588,6 @@ Api = {
                     complete: function(res) {
                         //alert(JSON.stringfiy(res));
                         location.reload();
-
                     },
                     cancel: function(res) {
                         //alert(JSON.stringfiy(res));
