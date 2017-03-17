@@ -556,8 +556,10 @@ Api = {
                         if(self.enableCopon){
                             self.enableCopon = false;
                             self.addCoupon();
+                        }else{
+                            Common.gotoPin(2);
+                            Common.alertBox.add('提交成功');
                         }
-                        Common.gotoPin(0);
                     }else{
                         Common.alertBox.add(data.msg);
                     }
