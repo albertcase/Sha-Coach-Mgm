@@ -1,6 +1,6 @@
 <?php
 
-define("BASE_URL", 'http://coachmgmtest.samesamechina.com/');
+define("BASE_URL", 'http://ff.samesamechina.com/');
 define("TEMPLATE_ROOT", dirname(__FILE__) . '/../template');
 define("VENDOR_ROOT", dirname(__FILE__) . '/../vendor');
 
@@ -18,7 +18,7 @@ define("NOWTIME", date('Y-m-d H:i:s'));
 define("AHEADTIME", '100');
 
 define("NONCESTR", '1jvia1');
-define("CURIO_AUTH_URL", 'http://uat.coach.samesamechina.com/api/wechat/oauth/auth/3f7a493c-1db6-41c3-8406-188ddf0a4ee8'); 
+define("CURIO_AUTH_URL", 'http://coach.samesamechina.com/api/wechat/oauth/auth/4958e216-c4b9-4217-8958-185420dc0946'); 
 
 //Redis config info
 define("REDIS_HOST", '127.0.0.1');
