@@ -39,30 +39,14 @@
                 </div>
             </div>
             <div class="total-score">
-                当前累计人气: <span class="num">520</span>
+                当前累计人气: <span class="num"></span>
             </div>
             <div class="p1-t1">再接再励，召集蜜友来助力</div>
             <div class="show-personal">
                 <span>查看/修改个人信息</span>
             </div>
             <ul class="product-lists" id="prize-lists">
-                <!--<li class="item">-->
-                    <!--<div class="p-img">-->
-                        <!--<img src="/src/images/logo.png" alt=""/>-->
-                    <!--</div>-->
-                    <!--<div class="p-title">-->
-                        <!--1元红包-->
-                    <!--</div>-->
-                    <!--<div class="p-price">-->
-                        <!--需要100积分-->
-                    <!--</div>-->
-                    <!--<div class="p-number">-->
-                        <!--剩余6件-->
-                    <!--</div>-->
-                    <!--<div class="btn btn-buy">-->
-                        <!--兑 换-->
-                    <!--</div>-->
-                <!--</li>-->
+               
             </ul>
         </div>
         <!-- form-->
