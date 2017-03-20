@@ -9,7 +9,7 @@
     <meta name="full-screen" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="/src/dist/css/style.css?v=1" />
-    <script src=" http://uat.coach.samesamechina.com/api/v1/js/e5fc5e16-eae6-4aaa-91c7-66a574fa6c7e/wechat"></script>
+    <script src="http://coach.samesamechina.com/api/v1/js/0453e8a6-7cf6-48a9-af24-7fb9e41662a3/wechat"></script>
     <script src="/src/dist/js/exchange_all.min.js?v=1"></script>
 </head>
 <body class="page-exchange">
