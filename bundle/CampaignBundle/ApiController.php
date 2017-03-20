@@ -123,7 +123,7 @@ class ApiController extends Controller {
         global $user;
 
         $wechatapi = new \Lib\WechatAPI();
-        $list = $wechatapi->cardList('pqQW1w_KgUbDEskJYuak55VeV21g');
+        $list = $wechatapi->cardList('pKCDxjpY-Q_-Asok5dKqOYv8Xxro');
         return $this->statusPrint(1, $list);
     }
 
