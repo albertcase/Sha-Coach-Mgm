@@ -25,7 +25,7 @@ class PageController extends Controller {
 			echo file_get_contents($user->qrcode);
 			exit;
 		}
-		$result = file_get_contents('http://uat.coach.samesamechina.com/api/coach/create_tmp_qr/'.$user->openid.'?access_token='.TOKEN);
+		$result = file_get_contents('http://coach.samesamechina.com/api/coach/create_tmp_qr/'.$user->openid.'?access_token='.TOKEN);
 		$result = json_decode($result);
 		$image = file_get_contents($result->img_src);
 		$filename = date('His') . rand(100,999) . '.png';
@@ -179,7 +179,7 @@ class PageController extends Controller {
 
 	public function clearCookieAction() {
 		global $user;
-		setcookie('_user0316', json_encode($user), time(), '/');
+		setcookie('_user0320', json_encode($user), time(), '/');
 		$this->statusPrint('success');
 	}
 

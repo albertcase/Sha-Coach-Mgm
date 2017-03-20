@@ -57,7 +57,7 @@ class WechatAPI {
 	}
 
 	public function cardList($cardid){
-	    $api_url = 'http://uat.coach.samesamechina.com/v2/wx/card/js/add/json?access_token='. TOKEN;
+	    $api_url = 'http://coach.samesamechina.com/v2/wx/card/js/add/json?access_token='. TOKEN;
         $data[] = array(
             'card_id' => $cardid,
             'code' => '',

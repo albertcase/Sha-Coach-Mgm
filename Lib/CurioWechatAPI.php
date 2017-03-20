@@ -29,7 +29,7 @@ class CurioWechatAPI {
 	  	$data = array("touser" => $openid,
 					  "msgtype" => "text",
 					  "text" => array("content" => $text));
-		$api_url = "http://uat.coach.samesamechina.com/v2/wx/message2/custom/text?access_token=".TOKEN;
+		$api_url = "http://coach.samesamechina.com/v2/wx/message2/custom/text?access_token=".TOKEN;
 	    $ch = curl_init();
 	    // print_r($ch);
 	    curl_setopt ($ch, CURLOPT_URL, $api_url);
