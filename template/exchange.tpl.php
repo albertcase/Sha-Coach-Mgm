@@ -43,7 +43,7 @@
             </div>
             <div class="p1-t1">再接再励，召集蜜友来助力</div>
             <div class="show-personal">
-                <span>查看/修改个人信息</span>
+                <span>个人信息修改</span>
             </div>
             <ul class="product-lists" id="prize-lists">
                
