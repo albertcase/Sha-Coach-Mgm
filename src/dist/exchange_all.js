@@ -480,7 +480,7 @@ Api = {
                 if(data.status==1){
                     self.showProductDetails(productObj);
                 }else{
-                    Common.alertBox.add('你已经成功完成两次兑换任务');
+                    Common.alertBox.add('你已经成功完成<br>两次兑换任务');
                 }
 
             });
