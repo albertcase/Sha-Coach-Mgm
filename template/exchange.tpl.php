@@ -56,8 +56,9 @@
             </div>
             <form id="form-contact" class="">
                 <p class="title">
-                    完善你的个性信息<br>
-                    我们将礼品邮寄给你
+                    所有兑换的实物礼品<br>
+                    将通过快递服务送达你手里<br>
+                    请即刻完善你的个人收件信息
                 </p>
                 <div class="form-information">
                     <div class="input-box input-box-name">
