@@ -9,6 +9,15 @@
     <meta name="full-screen" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="/src/dist/css/style.css?v=1" />
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?56180bb361c7d809534bf36fc1a71ebf";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
     <script src="http://coach.samesamechina.com/api/v1/js/0453e8a6-7cf6-48a9-af24-7fb9e41662a3/wechat"></script>
     <script src="/src/dist/js/join_all.min.js?v=1"></script>
 </head>
