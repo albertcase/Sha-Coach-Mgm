@@ -1088,6 +1088,7 @@ img {
   left: 0;
   top: 0;
   z-index: 1;
+  width: 100%;
 }
 #pin-join .block-qr .generate-img {
   position: relative;
