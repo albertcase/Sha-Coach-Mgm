@@ -30,8 +30,8 @@
         </div>
         <p class="slogan">
             你的专属二维码已经准备就绪<br>
-            姐姐妹妹站起来，这次宝贝都靠你<br>
-            长按二维码或截屏即可邀请好友参加
+            长按二维码或截屏<br>
+            发送给好友参加
         </p>
         <div class="block-qr">
             <div class="product-1" style="display: none">
