@@ -490,7 +490,7 @@ Api = {
         var image2 = document.getElementById('img2');
 
         //the image width is 750*610,relative window width is 100%
-        var cWidth = window.innerWidth,
+        var cWidth = window.innerWidth * 2,
             cHeight = parseInt(cWidth * 610 / 750 + 210 / 2 * cWidth / 750),
             img1Width = cWidth,
             img1Height = parseInt(cWidth * 610 / 750),
@@ -498,15 +498,16 @@ Api = {
             img3Width = 55 * cWidth / 750,
             img2Left = 480 * cWidth / 750,
             img3Left = 480 * cWidth / 750 + (img2Width - img3Width) / 2,
-            img4Left = 50 * cWidth / 750,
-            img4Width = 391 * cWidth / 750,
-            img4Height = img4Width * 65/391;
+            img4Left = 110 * cWidth / 750,
+            img4Width = 356 * cWidth / 750,
+            img4Height = img4Width * 66/356;
 
         canvas.width = cWidth;
         canvas.height = cHeight;
         ctx.rect(0, 0, cWidth, cHeight);
         ctx.fillStyle = "#fff";
         ctx.fill();
+        //ctx.imageSmoothingEnabled  = true;
         //the qrcode image is 210*210
 
         loadImages(sources, function(images) {
@@ -522,11 +523,11 @@ Api = {
             ctx.drawImage(image4, img4Left,img1Height+10,img4Width,img4Height);
 
             //    add custom text to canvas
-            var fsize = parseInt(24 * cWidth / 750) + 'px',
-                fLeft = parseInt(460 * cWidth / 750);
-            ctx.fillStyle = "#000";
-            ctx.font = fsize+' lighter serif';
-            ctx.textAlign = 'end';
+            //var fsize = parseInt(24 * cWidth / 750) + 'px',
+            //    fLeft = parseInt(460 * cWidth / 750);
+            //ctx.fillStyle = "#000";
+            //ctx.font = fsize+' lighter serif';
+            //ctx.textAlign = 'end';
             //ctx.fillText('召集蜜友来助力，扫描积分赢人气',fLeft, img1Height+15);
             //ctx.fillText('Coach多重惊喜正在前方召唤',fLeft, img1Height+30);
 
