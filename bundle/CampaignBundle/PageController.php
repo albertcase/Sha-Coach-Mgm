@@ -85,7 +85,7 @@ class PageController extends Controller {
 					$RedisAPI ->setParent($user1->uid, 1);
 					//$RedisAPI ->setSend($user1->uid);
 				}	
-				$response = array('openid' => $info->openid, 'text' => 'Hey baby~3月23日-4月23日，将你的COACH专属二维码，分享至好友，就有机会获得多重惊喜积分。<a href="'.BASE_URL.'qrcode?id='.$user1->uid.'">马上参加</a>\n每邀请一位好友扫描你的个人二维码，就可获得20点人气积分，多“扫”多得，不含上限。不仅如此，只要由你发起的人气接力，在你好友邀请扫码时，你也可获得5点友情积分。\n女生日，发动你的姐妹团，和COACH一起让友谊接力，幸运传递，赢取多重好礼。\n<a href="'.BASE_URL.'exchange">积分查看/兑换</a>');
+				$response = array('openid' => $info->openid, 'text' => 'Hey baby~3月24日-4月23日，邀请好友参加COACH花漾接力活动，就有机会兑换多重惊喜好礼。<a href="'.BASE_URL.'qrcode?id='.$user1->uid.'">马上参加</a>\n\n每邀请一位未关注COACH官方微信的好友扫描你的个人二维码，添加COACH官方微信关注，你就可获得20点人气积分，多“扫”多得。\n女生日，发动你的姐妹团，和COACH一起让友谊接力，幸运传递，赢取多重好礼。\n<a href="'.BASE_URL.'exchange">积分查看/兑换</a>');
 				//$RedisAPI->runScript();
 				$data = array('status' => 'success', 'data' => $response);
 				$this->dataPrint($data);
@@ -161,7 +161,7 @@ class PageController extends Controller {
 					$RedisAPI ->setParent($user1->uid, 1);
 					//$RedisAPI ->setSend($user1->uid);
 				}	
-				$response = array('openid' => $info->openid, 'text' => "Hey baby~3月24日-4月23日，邀请好友参加COACH花漾闺蜜节活动，就有机会兑换多重惊喜好礼。<a href='".BASE_URL."qrcode?id=".$user1->uid."'>马上参加</a>\n\n每邀请一位未关注COACH官方微信的好友扫描你的个人二维码，添加COACH官方微信关注，你就可获得20点人气积分，多“扫”多得。\n\n不仅如此，只要是由你发起的好友人气接力，在接力的好友邀请扫码时，你也可获得5点友情积分。\n\n发动你的姐妹团，和COACH一起让闺蜜情谊接力，幸运传递，赢取多重好礼。\n\n<a href='".BASE_URL."exchange'>积分查看/兑换</a>");
+				$response = array('openid' => $info->openid, 'text' => "Hey baby~3月24日-4月23日，邀请好友参加COACH花漾接力活动，就有机会兑换多重惊喜好礼。<a href='".BASE_URL."qrcode?id=".$user1->uid."'>马上参加</a>\n\n每邀请一位未关注COACH官方微信的好友扫描你的个人二维码，添加COACH官方微信关注，你就可获得20点人气积分，多“扫”多得。\n\n不仅如此，只要是由你发起的好友人气接力，在接力的好友邀请扫码时，你也可获得5点友情积分。\n\n赶快召唤你的花漾闺蜜，一起收集花漾赢好礼。\n\n<a href='".BASE_URL."exchange'>积分查看/兑换</a>");
 				//$RedisAPI->runScript();
 				$data = array('status' => 'success', 'data' => $response);
 				$this->dataPrint($data);
