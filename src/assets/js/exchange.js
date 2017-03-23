@@ -11,7 +11,7 @@
     controller.prototype.init = function(){
         var self = this;
 
-        location.hash = '#1';
+        //location.hash = '#1';
         //Common.setParameterByName('page','test');
         //load userinfo
         self.userInfo();
@@ -27,7 +27,7 @@
         //exchange the product
         $('.product-lists').on('click', '.btn-buy', function(){
             var curIndex = $(this).parent().index();
-            location.hash = '#2';
+            //location.hash = '#2';
             //check if the user has chance
             var id = $(this).attr('pid');
             var productObj = {
@@ -88,17 +88,6 @@
         //show contact form
         $('.show-personal span').on('touchstart',function(){
             //fill the form
-            //Api.getUserForm(function(data){
-            //    if(data.status==1){
-            //        $('#input-name').val('123');
-            //        $('#input-mobile').val('123');
-            //        $('#input-address').val('123');
-            //    }else{
-            //
-            //    }
-            //});
-            //location.hash = '#form';
-            //location.search = Common.setParameterByName('page','form');
             Common.gotoPin(1);
         });
 
@@ -319,7 +308,8 @@
 
         $('body').on('touchstart','.btn-alert-ok',function(){
             if($('body').hasClass('page-exchange') && $('#product-details-page').hasClass('current')){
-                location.reload();
+                //location.reload();
+                window.location.href = window.location.href+'?t='+new Date().getTime();
             }
         });
 
