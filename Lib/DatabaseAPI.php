@@ -289,7 +289,7 @@ class DatabaseAPI {
 	}
 
 	public function prizeList() {
-		$sql="SELECT `id`, `name`, `image`, `quota`, `score` FROM `prize`";
+		$sql="SELECT `id`, `name`, `image`, `quota`, `score` FROM `prize` where status=1";
 		$res = $this->connect()->query($sql);
 		$data = array();
 		while($rows = $res->fetch_array(MYSQLI_ASSOC))
