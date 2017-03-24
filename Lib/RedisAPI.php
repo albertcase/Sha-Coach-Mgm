@@ -172,12 +172,14 @@ class RedisAPI {
 				echo "Recipient Parents: {$user->nickname} : {$parent->openid}\n";
 				//给上级的上级加分
 				while ($pid = $RedisAPI->getParent($pid)) {
-					$parents = $DatabaseAPI->findQrcodeByUid($pid);
-					$CurioWechatAPI->sendText($parents->openid, $parent->nickname.'通过下级关注为您获取5积分');
-					$DatabaseAPI->scorePlus($parents->uid, 5, 5);
-					$DatabaseAPI->scoreLog($uid, $parents->uid, 5, '下级关注');
-					$parent = $parents;
-					echo "-- Deep Recipient Parents: {$parent->nickname} : {$parents->openid}\n";
+					if($pid > 1) {
+						$parents = $DatabaseAPI->findQrcodeByUid($pid);
+						$CurioWechatAPI->sendText($parents->openid, $parent->nickname.'通过下级关注为您获取5积分');
+						$DatabaseAPI->scorePlus($parents->uid, 5, 5);
+						$DatabaseAPI->scoreLog($uid, $parents->uid, 5, '下级关注');
+						$parent = $parents;
+						echo "-- Deep Recipient Parents: {$parent->nickname} : {$parents->openid}\n";
+					}
 				}
 			}
 		}
