@@ -159,7 +159,7 @@ class RedisAPI {
 		$RedisAPI = new \Lib\RedisAPI();
 		echo date('Y-m-d H:i:s') . "------------------------------------------\n";
 		while ($uid = $this->_redis->rPop('sendList')) {
-			echo "Current Child: {$uid}\n";
+			echo "\nCurrent Child: {$uid}\n";
 			$pid = $RedisAPI->getParent($uid);
 			if($pid && $pid > 1) {
 				$DatabaseAPI = new \Lib\DatabaseAPI();
@@ -177,11 +177,11 @@ class RedisAPI {
 					$DatabaseAPI->scorePlus($parents->uid, 5, 5);
 					$DatabaseAPI->scoreLog($uid, $parents->uid, 5, '下级关注');
 					$parent = $parents;
-					echo "Deep Recipient Parents: {$parent->nickname} : {$parents->openid}\n";
+					echo "-- Deep Recipient Parents: {$parent->nickname} : {$parents->openid}\n";
 				}
 			}
 		}
 		echo date('Y-m-d H:i:s') . "------------------------------------------\n\n";
 	}
-	
+
 }
