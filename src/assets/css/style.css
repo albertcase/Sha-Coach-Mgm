@@ -1187,8 +1187,9 @@ img {
   text-align: center;
 }
 .product-lists .item .p-title {
-  margin: 0.3rem 0;
-  font-size: 0.26rem;
+  margin: .3rem 0 0.1rem;
+  font-size: .26rem;
+  height: 0.7rem;
 }
 .product-lists .item .btn {
   width: 2rem;
