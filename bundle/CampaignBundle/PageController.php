@@ -28,7 +28,7 @@ class PageController extends Controller {
 		$result = file_get_contents('http://coach.samesamechina.com/api/coach/create_tmp_qr/'.$user->openid.'?access_token='.TOKEN);
 		$result = json_decode($result);
 		$image = file_get_contents($result->img_src);
-		$filename = date('His') . rand(100,999) . '.png';
+		$filename = $user->openid . '.png';
 		$folder = 'upload/img/'.date("Ymd").'/';
 		if(!is_dir($folder)){        	
 			if(!mkdir($folder, 0777, true))	
