@@ -77,6 +77,14 @@ class RedisAPI {
 
 	public function getParent($child) {
 		$pid = $this->_redis->get('parent:'. $child);
+		if ($pid) {
+			return $pid;
+		}
+		return null;
+	}
+
+	public function getParentFix($child) {
+		$pid = $this->_redis->get('parent:'. $child);
 		if ($pid > 1) {
 			return $pid;
 		}
@@ -161,7 +169,7 @@ class RedisAPI {
 		echo date('Y-m-d H:i:s') . "------------------------------------------\n";
 		while ($uid = $this->_redis->rPop('sendList')) {
 			echo "\nCurrent Child: {$uid}\n";
-			$pid = $RedisAPI->getParent($uid);
+			$pid = $RedisAPI->getParentFix($uid);
 			if($pid && $pid > 1) {
 				$DatabaseAPI = new \Lib\DatabaseAPI();
 				$user = $DatabaseAPI->findQrcodeByUid($uid);
@@ -172,7 +180,7 @@ class RedisAPI {
 				$DatabaseAPI->scoreLog($uid, $parent->uid, 20, '关注');
 				echo "Recipient Parents: {$user->nickname} : {$parent->openid}\n";
 				//给上级的上级加分
-				while ($pid = $RedisAPI->getParent($pid)) {
+				while ($pid = $RedisAPI->getParentFix($pid)) {
 					if($pid > 1) {
 						$parents = $DatabaseAPI->findQrcodeByUid($pid);
 						$CurioWechatAPI->sendText($parents->openid, $parent->nickname.'通过下级关注为您获取5积分');
