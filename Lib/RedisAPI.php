@@ -76,8 +76,9 @@ class RedisAPI {
 	}
 
 	public function getParent($child) {
-		if ($this->_redis->get('parent:'. $child)) {
-			return $this->_redis->get('parent:'. $child);
+		$pid = $this->_redis->get('parent:'. $child);
+		if ($pid > 1) {
+			return $pid;
 		}
 		return null;
 	}
