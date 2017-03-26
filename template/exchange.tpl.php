@@ -8,7 +8,7 @@
     <meta name="x5-fullscreen" content="true">
     <meta name="full-screen" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" type="text/css" href="/src/dist/css/style.css?v=1" />
+    <link rel="stylesheet" type="text/css" href="/src/dist/css/style.css?v=2" />
     <script>
     var _hmt = _hmt || [];
     (function() {
